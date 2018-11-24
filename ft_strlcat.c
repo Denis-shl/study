@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 17:50:10 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/24 22:53:00 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/24 15:56:10 by oargrave          #+#    #+#             */
+/*   Updated: 2018/11/24 17:56:43 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+size_t	strlcat(char *dst, const char *src, size_t size)
 {
-	int			index;
-	char		*point1;
-	char		*point2;
+	size_t		index;
+	size_t		n;
 
+	n = size;
 	index = 0;
-	point1 = (char*) s1;
-	point2 = (char*) s2;
-	while (index != n && *point1 == *point2)
+	while (n != 0 && dst[n] != '\0')
 	{
-		index++;
-		point1++;
-		point2++;
+		n--;
 	}
-	return (*point1 - *point2);
-}
+	while (src[index] != '\0' || n != size - 1)
+	{
+		dst[n] = src[index];
+		n++;
+		index++;
+	}
+}// надо потестить и понять работу!!!!!!!!

@@ -6,25 +6,25 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 15:20:20 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/22 15:25:40 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/11/24 21:06:03 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <string.h>
-#include <stdio.h>
+
 void	ft_bzero(void *s, size_t n)
 {
 	int index;
-	char *ma;
+	char *point;
 
-	ma = (char*) s;
 	index = 0;
+	point = (char*)s;
 	if (n == 0)
 		;
 	else
 		while (index != n)
 		{
-			*ma = 0;
-			ma++;
+			point[index] = '\0';
 			index++;
 		}
 }

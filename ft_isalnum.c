@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 17:50:10 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/24 22:53:00 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/24 17:17:49 by oargrave          #+#    #+#             */
+/*   Updated: 2018/11/24 21:11:27 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+int		ft_isalnum(int c)
 {
-	int			index;
-	char		*point1;
-	char		*point2;
-
-	index = 0;
-	point1 = (char*) s1;
-	point2 = (char*) s2;
-	while (index != n && *point1 == *point2)
-	{
-		index++;
-		point1++;
-		point2++;
-	}
-	return (*point1 - *point2);
+	if (c >= 48 && c <= 57)
+		return (1);
+	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+		return (1);
+	return (0);
 }

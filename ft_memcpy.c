@@ -6,20 +6,27 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 15:26:34 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/22 15:38:26 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/11/24 23:02:50 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
+
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int index;
+	int 		index;
+	char		*point1;
+	char		*point2;
 
+	point1 = (char*) dst;
+	point2 = (char*) src;
 	index = 0;
 	while (index != n)
 	{
-		dst[index] = src[index];
+		*point1 = *point2;
+		point1++;
+		point2++;
 		index++;
 	}
 	return (dst);
-	// можнло дописать условия проверки ДЗ
 }

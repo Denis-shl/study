@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 17:50:10 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/24 22:53:00 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/24 17:39:50 by oargrave          #+#    #+#             */
+/*   Updated: 2018/11/24 17:41:57 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <ctype.h>
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_tolower(int c)
 {
-	int			index;
-	char		*point1;
-	char		*point2;
-
-	index = 0;
-	point1 = (char*) s1;
-	point2 = (char*) s2;
-	while (index != n && *point1 == *point2)
-	{
-		index++;
-		point1++;
-		point2++;
-	}
-	return (*point1 - *point2);
+	if (c >= 65 && c <= 90)
+		return (c + 32);
+	return (c);
 }

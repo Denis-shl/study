@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 17:50:10 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/24 22:53:00 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/24 17:14:53 by oargrave          #+#    #+#             */
+/*   Updated: 2018/11/24 21:24:30 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_isdigit(int c)
 {
-	int			index;
-	char		*point1;
-	char		*point2;
-
-	index = 0;
-	point1 = (char*) s1;
-	point2 = (char*) s2;
-	while (index != n && *point1 == *point2)
-	{
-		index++;
-		point1++;
-		point2++;
-	}
-	return (*point1 - *point2);
+	if (c >= 48 && c <= 57)
+		return (1);
+	else
+		return (0);
 }
