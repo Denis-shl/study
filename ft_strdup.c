@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	int 		index;
 	char		 *mas;

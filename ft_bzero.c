@@ -9,18 +9,22 @@
 /*   Updated: 2018/11/22 15:25:40 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <string.h>
+#include <stdio.h>
 void	ft_bzero(void *s, size_t n)
 {
 	int index;
+	char *ma;
 
+	ma = (char*) s;
 	index = 0;
 	if (n == 0)
-		break ;
+		;
 	else
 		while (index != n)
 		{
-			s[index] = '\0';
+			*ma = 0;
+			ma++;
 			index++;
 		}
 }
