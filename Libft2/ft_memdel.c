@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
+#include <stdio.h>
 void	ft_memdel(void **ap)
 {
 	int index;
@@ -27,7 +27,33 @@ void	ft_memdel(void **ap)
 	while (index >= 0)
 	{
 		free(point[index]);
+		point[index] = NULL;
 		index--;
 	}
 	free(point);
+	printf("%p\n",point[0]);
+}
+
+int main()
+{
+	int i=0;
+	int j=0;
+	char **point;
+	point = (char**)malloc(sizeof(char*) * 11);
+	point[10] = 0;
+	while(j != 10)
+	{	
+		i = 0;
+		point[j] = (char*)malloc(sizeof(char) * 11);
+		while (i != 10)
+		{
+			point[j][i] = '1';
+			i++;
+		}
+		point[j][i] = '\0';
+		printf("%s\n",point[j]);
+	j++;
+	}
+	ft_memdel((void**)point);
+	return (0);
 }
