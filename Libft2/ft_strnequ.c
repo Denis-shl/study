@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 17:19:44 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/04 17:38:19 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/27 16:18:43 by oargrave          #+#    #+#             */
+/*   Updated: 2018/11/27 16:22:29 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
+#include <string.h>
 
-void	ft_putstr(char const *s)
+int	ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	int	index;
-	char	*point;
+	size_t	index;
 
-	if (!s)
-		return (0);
-	point = (char *) s;
 	index = 0;
-	while(*(point + index) != '\0')
+	if (!s1 || !s2)
+		return (0);
+	while (*(s1 + index) && (*(s2 + index) && (index < n)))
 	{
-		ft_putchar(*(point + index));
+		if (*(s1 + index) != (*(s2 + index)))
+				return (0);
 		index++;
 	}
+	return (1);
 }
-	

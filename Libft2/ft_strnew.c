@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 17:19:44 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/04 17:38:19 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/27 14:28:58 by oargrave          #+#    #+#             */
+/*   Updated: 2018/11/27 14:52:26 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
+#include <string.h>
 
-void	ft_putstr(char const *s)
-{
-	int	index;
+char	*ft_strnew(size_t size)
+{	
 	char	*point;
+	size_t	index;
 
-	if (!s)
-		return (0);
-	point = (char *) s;
+	point = NULL;
 	index = 0;
-	while(*(point + index) != '\0')
+	if (!(point = (char *)malloc(sizeof(char) * size + 1)))
+		return (0);
+	point[size] = '\0';
+	while (index < size)
 	{
-		ft_putchar(*(point + index));
+		point[index] = '\0';
 		index++;
 	}
+	return (point);
 }
-	
+

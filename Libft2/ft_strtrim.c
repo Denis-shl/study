@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 17:19:44 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/04 17:38:19 by oargrave         ###   ########.fr       */
+/*   Created: 2018/12/04 17:24:30 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/04 17:37:52 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-void	ft_putstr(char const *s)
+char	*ft_strtrim(char const *s)
 {
-	int	index;
-	char	*point;
+	int i;
+	int j;
+	char *str;
+	char *start;
 
+	i = 0;
+	j = 0;
 	if (!s)
 		return (0);
-	point = (char *) s;
-	index = 0;
-	while(*(point + index) != '\0')
+	while (*(s + i) != '\0')
 	{
-		ft_putchar(*(point + index));
-		index++;
+		if (*(s + i) == ' ' || *(s + i) == '\n' ||*(s + i) == '\t')
+			j++;
+		i++;
 	}
-}
-	
+
+
+

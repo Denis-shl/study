@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 17:19:44 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/04 17:38:19 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/27 15:04:20 by oargrave          #+#    #+#             */
+/*   Updated: 2018/11/27 15:19:08 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-void	ft_putstr(char const *s)
+void	ft_striteri(char *s, void(*f)(unsigned int,char *))
 {
-	int	index;
-	char	*point;
+	unsigned int index;
 
-	if (!s)
-		return (0);
-	point = (char *) s;
 	index = 0;
-	while(*(point + index) != '\0')
+	if (!s) 
+		return ;
+	while (*(s + index))
 	{
-		ft_putchar(*(point + index));
+		f(index,s + index);
 		index++;
 	}
 }
-	

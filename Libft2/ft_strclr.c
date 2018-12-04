@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 17:19:44 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/04 17:38:19 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/27 14:52:55 by oargrave          #+#    #+#             */
+/*   Updated: 2018/11/27 14:55:46 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-void	ft_putstr(char const *s)
+void	ft_strclr(char *s)
 {
-	int	index;
-	char	*point;
-
 	if (!s)
-		return (0);
-	point = (char *) s;
-	index = 0;
-	while(*(point + index) != '\0')
+		return ;
+	while (*s)
 	{
-		ft_putchar(*(point + index));
-		index++;
+		*s = '\0';
+		s++;
 	}
 }
-	

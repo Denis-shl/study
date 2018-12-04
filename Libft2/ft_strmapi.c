@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 17:19:44 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/04 17:38:19 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/27 15:57:23 by oargrave          #+#    #+#             */
+/*   Updated: 2018/11/27 16:05:29 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <libft.h>
 
-void	ft_putstr(char const *s)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int , char))
 {
-	int	index;
-	char	*point;
+	unsigned int	index;
+	char	*str;
 
-	if (!s)
-		return (0);
-	point = (char *) s;
 	index = 0;
-	while(*(point + index) != '\0')
+	str = NULL;
+	if (!(s))
+		return (0);
+	while (*(s + index))
+		index++;
+	if (!(str = (char *)malloc(sizeof(char) * index + 1)))
+		return (0);
+	*(str + index) = '\0';
+	index = 0;
+	while (*(s + index))
 	{
-		ft_putchar(*(point + index));
+		*(str + index) = f (index,*(s + index));
 		index++;
 	}
+	return (str);
 }
-	
+
