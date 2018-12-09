@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 17:19:44 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/05 18:15:24 by oargrave         ###   ########.fr       */
+/*   Created: 2018/12/05 18:17:26 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/05 18:21:09 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-void	ft_putstr(char const *s)
+void	ft_putendl(char const *s)
 {
-	int	index;
-	char	*point;
+	int i;
 
+	i = 0;
 	if (!s)
 		return ;
-	point = (char *) s;
-	index = 0;
-	while(*(point + index) != '\0')
+	while (*(s + i))
 	{
-		ft_putchar(*(point + index));
-		index++;
+		ft_putchar(*(s + i));
+		i++;
 	}
+	ft_putchar('\n');
 }
-	
