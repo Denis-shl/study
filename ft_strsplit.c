@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-unsigned int	ft_size_word(char const *s, char c)
+static unsigned int	ft_size_word(char const *s, char c)
 {	
 	unsigned int i;
 	unsigned int word;
