@@ -6,13 +6,12 @@
 #    By: oargrave <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/22 06:33:57 by oargrave          #+#    #+#              #
-#    Updated: 2018/12/24 16:28:42 by oargrave         ###   ########.fr        #
+#    Updated: 2018/12/24 20:45:21 by oargrave         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-CC = gcc 
-FLAGS  = -Wall -Werror -Wextra -c
+FLAGS  = -Wall -Werror -Wextra -I. -c
 FILE = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c\
 ft_memchr.c ft_memcmp.c ft_strlen.c ft_strdup.c ft_strcpy.c ft_strncpy.c\
 ft_strcat.c ft_strncat.c ft_strlcat.c ft_strchr.c ft_strrchr.c ft_strstr.c\
@@ -24,18 +23,17 @@ ft_strjoin.c ft_strtrim.c ft_strsplit.c ft_itoa.c ft_putchar.c ft_putstr.c\
 ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c\
 ft_putnbr_fd.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c\
 ft_lstiter.c ft_lstmap.c
-OBJ = $(FILE:%.c=%.0)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar rc  $(NAME) $(OBJ)
-$(OBJ): $(FILE)
-	$(CC) $(FLAGS) $(FILE)
+$(NAME): 
+	gcc $(FLAGS) $(FILE)
+	ar rcs  $(NAME) *.o
+	ranlib  $(NAME)
 
 
 clean:
 		rm -f *.o
 fclean: clean
 		rm -f $(NAME)
-re: all
+re: fclean all

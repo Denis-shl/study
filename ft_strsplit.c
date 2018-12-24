@@ -6,7 +6,7 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:09:19 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/24 20:11:17 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/12/24 20:46:34 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static char			**ft_algor(char **str, char const *s, char c)
 
 	y = 0;
 	j = 0;
+	i = 0;
 	while (*(s + i))
 	{
 		while ((*(s + i) != c) && (*(s + i) != '\0'))
@@ -90,7 +91,6 @@ char				**ft_strsplit(char const *s, char c)
 	char							**str;
 	unsigned int					size;
 
-	i = 0;
 	size = 0;
 	str = NULL;
 	if (!(s))
