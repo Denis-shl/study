@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl.c                                       :+:      :+:    :+:   */
+/*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/05 18:17:26 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/05 18:21:09 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/27 14:52:55 by oargrave          #+#    #+#             */
+/*   Updated: 2018/11/27 14:55:46 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-void	ft_putendl(char const *s)
+void	ft_strclr(char *s)
 {
-	int i;
-
-	i = 0;
 	if (!s)
 		return ;
-	while (*(s + i))
+	while (*s)
 	{
-		ft_putchar(*(s + i));
-		i++;
+		*s = '\0';
+		s++;
 	}
-	ft_putchar('\n');
 }

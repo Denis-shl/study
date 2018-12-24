@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strclr.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 14:52:55 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/27 14:55:46 by oargrave         ###   ########.fr       */
+/*   Created: 2018/12/05 18:32:14 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/17 17:18:24 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-void	ft_strclr(char *s)
+void	ft_putchar_fd(char c, int fd)
 {
-	if (!s)
-		return ;
-	while (*s)
-	{
-		*s = '\0';
-		s++;
-	}
+	write(fd, &c, 1);
 }

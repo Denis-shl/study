@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_strsub.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 15:49:04 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/26 16:50:52 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/27 16:28:39 by oargrave          #+#    #+#             */
+/*   Updated: 2018/11/27 16:44:09 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <lidft.h>
-#include <stdlib.h>
-#include <stdio.h>
-void	*ft_memalloc(size_t size)
+#include "libft.h"
+
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
-	int		i;
+	size_t	index;
 
-	i = 0;
-	if (!(str = (char *)malloc(sizeof(char) *size)))
+	index = 0;
+	str = NULL;
+	if (!s || len == 0)
+		return (NULL);
+	if (!(str = (char*)malloc(sizeof(char) * len + 1)))
 		return (0);
-	str[size - 1] = '\0';
-	while (str[i] != '\0')
+	while (*(s + start) && (index < len))
 	{
-		str[i] = 0;
-		i++;
+		*(str + index) = *(s + start);
+		index++;
+		start++;
 	}
-	return ((void *)str);
-}
-
-int main ()
-{
-	char *z;
-	z = NULL;
-
-	z = (char*)ft_memalloc(15);
-	printf ("%p \n",z);
-	return (0);
+	*(str + index) = '\0';
+	return (str);
 }

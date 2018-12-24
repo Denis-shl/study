@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsplit.c                                      :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 17:39:44 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/04 17:51:18 by oargrave         ###   ########.fr       */
+/*   Created: 2018/12/20 17:33:21 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/24 20:03:37 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-char	**ft_strsplit(char const *s, char c)
+void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
 {
-	char **str;
-	int i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (*(s + i) != '\0')
-	{
-		if (*(s + i) == c)
-			j++;
-		i++;
-	}
-	if (!(str = (char *)malloc(char(sizeof(char *) * j + 1))))
-		return (0);
-
-
-
+	del((*alst)->content, (*alst)->content_size);
+	free(*alst);
+	*alst = NULL;
+}

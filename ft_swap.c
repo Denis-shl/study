@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/24 17:39:50 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/24 17:41:57 by oargrave         ###   ########.fr       */
+/*   Created: 2018/12/22 03:50:02 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/24 20:08:13 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int c)
+void	ft_swap(char *point1, char *point2)
 {
-	if (c >= 65 && c <= 90)
-		return (c + 32);
-	return (c);
+	char		point;
+
+	point = *point1;
+	*point1 = *point2;
+	*point2 = point;
 }

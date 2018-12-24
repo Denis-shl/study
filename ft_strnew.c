@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.h                                        :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 16:28:39 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/27 16:44:09 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/27 14:28:58 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/17 17:56:25 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <libft.h>
+#include "libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+char	*ft_strnew(size_t size)
 {
-	char	*str;
-	size_t	index;
+	char			*point;
+	size_t			index;
 
+	point = NULL;
 	index = 0;
-	str = NULL;
-	if (!s || len == 0)
-		return (NULL);
-	if (!(str = (char*)malloc(sizeof(char) * len + 1)))
+	if (!(point = (char *)malloc(sizeof(char) * size + 1)))
 		return (0);
-	while (*(s + start) && (index < len))
+	point[size] = '\0';
+	while (index < size)
 	{
-		*(str + index) = *(s + start);
+		point[index] = '\0';
 		index++;
-		start++;
 	}
-	*(str + index) = '\0';
-	return (str);
+	return (point);
 }

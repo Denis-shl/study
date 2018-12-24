@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 23:21:52 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/05 19:06:51 by oargrave         ###   ########.fr       */
+/*   Created: 2018/12/20 16:50:27 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/21 20:45:56 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	int s;
-	int i;
-	int j;
-	char	*str;
-	
-	i = 0;
-	j = 0;
-	if (!(s1) || !(s2))
+	t_list	*point;
+
+	if (!(point = (t_list*)malloc(sizeof(*point))))
 		return (NULL);
-	s = ft_strlen(s1) + ft_strlen(s2) + 1;
-	if (!(str = (char*)malloc(sizeof(char) * s)))
-		return (NULL);
-	while (*(s1 + i) != '\0')
+	if (!content)
 	{
-		*(str + i) = *(s1 + i);
-		i++;
+		point->content = NULL;
+		point->content_size = 0;
 	}
-	while (*(s2 + j) != '\0')
+	else
 	{
-		*(str + i) = *(s2 + j);
-		i++;
-		j++;
+		if (!(point->content = malloc(content_size)))
+		{
+			free(point);
+			return (NULL);
+		}
+		ft_memcpy(point->content, content, content_size);
+		point->content_size = content_size;
 	}
-	*(str + i) = '\0';
-	return (str);
+	point->next = NULL;
+	return (point);
 }

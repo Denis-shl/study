@@ -1,20 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/24 17:39:50 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/24 17:41:57 by oargrave         ###   ########.fr       */
+/*   Created: 2018/12/05 18:21:44 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/17 17:29:14 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int c)
+static void	ft_min(void)
 {
-	if (c >= 65 && c <= 90)
-		return (c + 32);
-	return (c);
+	int				index;
+	char			*a;
+
+	index = 0;
+	a = "-2147483648";
+	while (index <= 11)
+	{
+		ft_putchar(a[index]);
+		index++;
+	}
+}
+
+void		ft_putnbr(int n)
+{
+	if (n == -2147483648)
+	{
+		ft_min();
+		return ;
+	}
+	else if (n < 0)
+	{
+		ft_putchar('-');
+		n *= -1;
+	}
+	if (n > 10)
+		ft_putnbr(n / 10);
+	if (n >= 0)
+		ft_putchar(n % 10 + 48);
 }

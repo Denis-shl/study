@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/05 18:38:47 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/05 18:41:48 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/27 16:08:42 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/17 17:50:10 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-void	ft_putendl_fd(char const *s, int fd)
+int	ft_strequ(char const *s1, char const *s2)
 {
-	int i;
+	unsigned int	index;
 
-	i = 0;
-	if (!(s))
-		return ;
-	while (*(s + i))
+	index = 0;
+	if (!s1 || !s2)
+		return (0);
+	while (*(s1 + index) && *(s2 + index))
 	{
-		ft_putchar_fd(*(s + i) , fd);
-		i++;
+		if (*(s1 + index) != *(s2 + index))
+			return (0);
+		index++;
 	}
-	ft_putchar_fd('\n' , fd);
+	return (1);
 }

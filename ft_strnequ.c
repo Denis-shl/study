@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/24 17:39:50 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/24 17:41:57 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/27 16:18:43 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/17 17:49:38 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int c)
+int	ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	if (c >= 65 && c <= 90)
-		return (c + 32);
-	return (c);
+	size_t	index;
+
+	index = 0;
+	if (!s1 || !s2)
+		return (0);
+	while (*(s1 + index) && (*(s2 + index) && (index < n)))
+	{
+		if (*(s1 + index) != (*(s2 + index)))
+			return (0);
+		index++;
+	}
+	return (1);
 }

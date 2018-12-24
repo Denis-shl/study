@@ -6,11 +6,11 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 15:50:50 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/25 19:41:45 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/12/17 16:52:23 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
@@ -20,8 +20,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	size_t		j;
 
 	j = 0;
-	point1 = (char*) dst;
-	point2 = (char*) src;
+	point1 = (char *)dst;
+	point2 = (char *)src;
 	index = 0;
 	if (point1 > point2)
 	{

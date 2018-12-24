@@ -6,11 +6,11 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/24 15:25:23 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/25 20:28:23 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/12/17 17:02:02 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
@@ -21,7 +21,7 @@ char	*ft_strncpy(char *dst, const char *src, size_t len)
 	{
 		if (src[index] != '\0')
 			dst[index] = src[index];
-		else 
+		else
 			while (index < len)
 			{
 				dst[index] = '\0';

@@ -1,46 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/05 18:43:08 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/05 18:50:14 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/27 14:57:31 by oargrave          #+#    #+#             */
+/*   Updated: 2018/11/27 15:03:07 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-static void  ft_min (int fd)
+void	ft_striter(char *s, void (*f)(char *))
 {
-	int  index;
-	char *a;
-	
-	index = 0;
-	a = "-2147483648";
-	while (index <= 11)
-	{
-		ft_putchar_fd(a[index], fd);
-		index++;
-	}
-}
-
-void  ft_putnbr_fd(int n, int fd)
-{
-	if (n == -2147483648)
-	{
-		ft_min(fd);
+	if (!s)
 		return ;
+	while (*s)
+	{
+		f(s);
+		s++;
 	}
-	else
-		if (n < 0)
-		{
-			ft_putchar_fd('-', fd);
-			n *= -1;
-		}
-	if (n > 10)
-		ft_putnbr_fd(n / 10, fd);
-	if (n >= 0)
-		ft_putchar_fd(n % 10 + 48, fd);
 }

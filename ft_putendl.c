@@ -1,46 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/05 18:21:44 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/05 18:50:38 by oargrave         ###   ########.fr       */
+/*   Created: 2018/12/05 18:17:26 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/17 17:19:27 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-static void	ft_min (void)
+void	ft_putendl(char const *s)
 {
-	int  index;
-	char *a;
-	
-	index = 0;
-	a = "-2147483648";
-	while (index <= 11)
-	{
-		ft_putchar(a[index]);
-		index++;
-	}
-}
+	int				i;
 
-void	ft_putnbr(int n)
-{
-	if (n == -2147483648)
-	{
-		ft_min();
+	i = 0;
+	if (!s)
 		return ;
+	while (*(s + i))
+	{
+		ft_putchar(*(s + i));
+		i++;
 	}
-	else 
-		if (n < 0)
-		{
-			ft_putchar('-');
-			n *= -1;
-		}
-	if (n > 10)
-		ft_putnbr(n / 10);
-	if (n >= 0)
-		ft_putchar(n % 10 + 48);
+	ft_putchar('\n');
 }

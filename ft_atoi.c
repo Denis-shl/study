@@ -6,14 +6,16 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 12:08:20 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/26 15:40:11 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/12/24 20:04:26 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(char *str)
+#include "libft.h"
+
+int	ft_atoi(const char *str)
 {
-	int flag;
-	int res;
+	int			flag;
+	long long	res;
 
 	flag = 1;
 	res = 0;
@@ -34,5 +36,5 @@ int	ft_atoi(char *str)
 		res = res * 10 + (*str - '0');
 		str++;
 	}
-	return (res * flag);
+	return ((int)res * flag);
 }

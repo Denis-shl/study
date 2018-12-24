@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 14:28:58 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/27 14:52:26 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/27 15:04:20 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/24 20:13:33 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-#include <string.h>
+#include "libft.h"
 
-char	*ft_strnew(size_t size)
-{	
-	char	*point;
-	size_t	index;
+void	ft_striteri(char *s, void	(* f) (unsigned int, char *))
+{
+	unsigned int	index;
 
-	point = NULL;
 	index = 0;
-	if (!(point = (char *)malloc(sizeof(char) * size + 1)))
-		return (0);
-	point[size] = '\0';
-	while (index < size)
+	if (!s)
+		return ;
+	while (*(s + index))
 	{
-		point[index] = '\0';
+		f(index, s + index);
 		index++;
 	}
-	return (point);
 }
-

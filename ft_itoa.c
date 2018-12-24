@@ -6,7 +6,7 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 17:51:41 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/05 18:13:52 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/12/17 17:16:56 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_len(int n)
 {
-	int i;
+	int				i;
 
 	i = 0;
 	if (n == 0)
@@ -39,8 +39,8 @@ static int	ft_len(int n)
 
 static char	*ft_min(int n, char *str)
 {
-	unsigned int i;
-	int j;
+	unsigned int	i;
+	int				j;
 
 	i = 2147483648;
 	j = ft_len(n) - 1;
@@ -54,7 +54,6 @@ static char	*ft_min(int n, char *str)
 	return (str);
 }
 
-
 static char	*ft_algor(int n, char *str)
 {
 	int i;
@@ -64,7 +63,7 @@ static char	*ft_algor(int n, char *str)
 	j = ft_len(n) - 1;
 	if (n == -2147483648)
 	{
-		str = ft_min(n,str);
+		str = ft_min(n, str);
 		return (str);
 	}
 	if (n < 0)
@@ -82,18 +81,16 @@ static char	*ft_algor(int n, char *str)
 	return (str);
 }
 
-char	*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
-	char *str;
-	int i;
+	char		*str;
+	int			i;
 
 	str = NULL;
 	i = ft_len(n);
 	if (!(str = (char *)malloc(sizeof(char) * i + 1)))
 		return (0);
 	str[i] = '\0';
-	str = ft_algor(n, str); 	
+	str = ft_algor(n, str);
 	return (str);
-
-
 }

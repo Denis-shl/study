@@ -6,15 +6,16 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:40:03 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/26 15:30:44 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/12/17 16:55:24 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
-int	ft_strcmp(const char *s1,const  char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	int i;
+	int			i;
+
 	i = 0;
 	if (!(ft_strlen(s1)) && !(ft_strlen(s2)))
 		return (0);
@@ -22,5 +23,5 @@ int	ft_strcmp(const char *s1,const  char *s2)
 	{
 		i++;
 	}
-	return ((unsigned char)*(s1 + i) - (unsigned char)* (s2 + i));
+	return ((unsigned char)*(s1 + i) - (unsigned char)*(s2 + i));
 }
