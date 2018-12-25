@@ -6,13 +6,13 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 15:19:47 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/17 17:55:13 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/12/25 14:51:04 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmap(char const *s, char	(* f)(char))
+char	*ft_strmap(char const *s, char (*f)(char))
 {
 	int				index;
 	char			*str;

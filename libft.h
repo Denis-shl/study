@@ -6,7 +6,7 @@
 /*   By: jrameau <jrameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 21:30:24 by jrameau           #+#    #+#             */
-/*   Updated: 2018/12/24 20:17:20 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/12/25 15:00:51 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
-
 
 void				ft_putchar(char c);
 void				ft_putstr(char const *str);
@@ -78,7 +77,6 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
-
 
 typedef struct		s_list
 {

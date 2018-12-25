@@ -6,7 +6,7 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 12:08:20 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/24 20:04:26 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/12/25 16:44:34 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	ft_atoi(const char *str)
 {
-	int			flag;
-	long long	res;
+	long long			flag;
+	long long			res;
+	long long			i;
 
 	flag = 1;
 	res = 0;
@@ -23,17 +24,18 @@ int	ft_atoi(const char *str)
 	{
 		str++;
 	}
-	if (*str == '-')
-	{
+	if (*str == '-' && str++)
 		flag = -1;
-		str++;
-	}
 	else if (*str == '+' && str++)
-	{
-	}
+		;
 	while ((*str >= '0') && (*str <= '9'))
 	{
+		i = res;
 		res = res * 10 + (*str - '0');
+		if (res < i && flag == 1)
+			return (-1);
+		else if (res < i && flag == -1)
+			return (0);
 		str++;
 	}
 	return ((int)res * flag);
