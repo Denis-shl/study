@@ -62,9 +62,9 @@ char				**ft_strsplit(char const *s, char c)
 
 	y = 0;
 	i = -1;
-	size = ft_size_word(s, c);
 	if (!(s))
 		return (0);
+	size = ft_size_word(s,c);
 	if (!(str = (char**)malloc(sizeof(char*) * size + 1)))
 		return (0);
 	while (++i < size)

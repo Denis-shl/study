@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:50:50 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/17 16:52:23 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/24 15:25:23 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/17 17:02:02 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	size_t		index;
-	char		*point1;
-	char		*point2;
-	size_t		j;
+	size_t			index;
 
-	j = 0;
-	point1 = (char *)dst;
-	point2 = (char *)src;
+	if (!dst || !src)
+		return (NULL);
 	index = 0;
-	if (point1 > point2)
+	while (index < len)
 	{
-		while ((int)(--len) >= 0)
-		{
-			point1[len] = point2[len];
-		}
+		if (src[index] != '\0')
+			dst[index] = src[index];
+		else
+			while (index < len)
+			{
+				dst[index] = '\0';
+				index++;
+			}
+		index++;
 	}
-	else
-		while (index < len)
-		{
-			point1[index] = point2[index];
-			index++;
-		}
 	return (dst);
 }
