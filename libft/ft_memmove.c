@@ -17,11 +17,9 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	size_t		index;
 	char		*point1;
 	char		*point2;
-	size_t		j;
 
 	if(!dst || !src)
 		return (NULL);
-	j = 0;
 	point1 = (char *)dst;
 	point2 = (char *)src;
 	index = 0;
