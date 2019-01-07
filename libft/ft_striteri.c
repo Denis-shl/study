@@ -6,7 +6,7 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 15:04:20 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/25 14:52:07 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/12/26 18:32:39 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 	unsigned int	index;
 
 	index = 0;
-	if (!s)
+	if (!s || !f)
 		return ;
 	while (*(s + index))
 	{

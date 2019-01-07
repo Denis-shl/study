@@ -6,15 +6,13 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 03:54:16 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/25 14:58:16 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/12/26 19:54:57 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <string.h>
 
-static void ft_algor(int *flag, int *length, int *size)
+static void	ft_algor(int *flag, int *length, int *size)
 {
 	if (*(flag) == 1)
 	{
@@ -23,8 +21,11 @@ static void ft_algor(int *flag, int *length, int *size)
 			*length = *size;
 		*size = 0;
 	}
+	else
+		*size = *size + 1;
 }
-int ft_strcspn(const char *str, const char *sum)
+
+int			ft_strcspn(const char *str, const char *sum)
 {
 	int i;
 	int j;
@@ -34,36 +35,21 @@ int ft_strcspn(const char *str, const char *sum)
 
 	length = 0;
 	size = 0;
-	i = 0;
+	i = -1;
 	if (!(*str) || (!(*sum)))
 		return (0);
-	while (*(str + i))
+	while (*(str + ++i))
 	{
-		j = 0;
-		while (*(sum + j))
+		j = -1;
+		while (*(sum + ++j))
 		{
 			if (*(sum + j) == *(str + i))
 			{
 				flag = 1;
 				break ;
 			}
-
-			j++;
 		}
 		ft_algor(&flag, &length, &size);
-		size++;
-	i++;	
 	}
 	return (length);
 }
-
-int main ()
-{
-	char str1 [] = "1234567890";
-	char str2 [] = "190";
-	int i;
-	i = ft_strcspn (str1,str2);
-	printf ("i = %d \n",i);
-	return (0);
-}
-

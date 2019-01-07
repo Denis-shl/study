@@ -1,45 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_size_symbol.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:50:50 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/17 16:52:23 by oargrave         ###   ########.fr       */
+/*   Created: 2018/12/26 19:56:23 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/26 20:15:36 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+int	ft_sizesymbol(char const *s, char c)
 {
-	size_t		index;
-	char		*point1;
-	char		*point2;
-	size_t		j;
+	int symbol;
+	int i;
 
-	j = 0;
-	point1 = (char *)dst;
-	point2 = (char *)src;
-	index = 0;
-	if (point1 > point2)
+	i = 0;
+	symbol = 0;
+	while (s[i] == c)
 	{
-		while ((int)(--len) >= 0)
-		{
-			point1[len] = point2[len];
-		}
+		i++;
 	}
-	else
-		while (index < len)
-		{
-			point1[index] = point2[index];
-			index++;
-		}
-	return (dst);
-}
-
-int main(void)
-{
-	ft_memmove(NULL, NULL, 15);
+	while ((s[i] != c) && (s[i] != '\0'))
+	{
+		i++;
+		symbol++;
+	}
+	return (symbol);
 }

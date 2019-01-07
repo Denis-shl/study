@@ -6,7 +6,7 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 14:57:31 by oargrave          #+#    #+#             */
-/*   Updated: 2018/11/27 15:03:07 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/12/26 18:32:08 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 void	ft_striter(char *s, void (*f)(char *))
 {
-	if (!s)
+	int				i;
+
+	i = 0;
+	if (!s || !f)
 		return ;
-	while (*s)
+	while (*(s + i))
 	{
-		f(s);
-		s++;
+		f(s + i);
+		i++;
 	}
 }

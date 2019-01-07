@@ -6,7 +6,7 @@
 /*   By: jrameau <jrameau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/21 21:30:24 by jrameau           #+#    #+#             */
-/*   Updated: 2018/12/25 15:00:51 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/12/26 20:28:16 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,11 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *n);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+
+int					ft_strcspn(const char *str, const char *sum);
+void				ft_swap(char *point1, char *point2);
+int					ft_sizeword(char const *s, char c);
+int					ft_sizesymbol(char const *s, char c);
+void				*ft_realloc(void *str, size_t prev, size_t size);
 
 #endif
