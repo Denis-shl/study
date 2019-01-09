@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 12:24:00 by oargrave          #+#    #+#             */
-/*   Updated: 2019/01/08 12:39:22 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/24 15:25:23 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/17 17:02:02 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 10
-#include <fcntl.h>
-#include "libft/libft.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	get_next_line(int fd, char **line);
+char	*ft_strncpy(char *dst, const char *src, size_t len)
+{
+	size_t			index;
 
-#endif
+	index = 0;
+	while (index < len)
+	{
+		if (src[index] != '\0')
+			dst[index] = src[index];
+		else
+			while (index < len)
+			{
+				dst[index] = '\0';
+				index++;
+			}
+		index++;
+	}
+	return (dst);
+}

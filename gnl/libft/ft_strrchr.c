@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 12:24:00 by oargrave          #+#    #+#             */
-/*   Updated: 2019/01/08 12:39:22 by oargrave         ###   ########.fr       */
+/*   Created: 2018/11/24 16:23:28 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/17 17:03:04 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 10
-#include <fcntl.h>
-#include "libft/libft.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	get_next_line(int fd, char **line);
+char	*ft_strrchr(const char *s, int c)
+{
+	char		sumbol;
+	char		*point;
 
-#endif
+	sumbol = c;
+	point = NULL;
+	while (*s)
+	{
+		if (*s == sumbol)
+			point = (char *)s;
+		s++;
+		if (*s == '\0' && *s == sumbol)
+			point = (char *)s;
+	}
+	if (point != NULL)
+		return (point);
+	return (NULL);
+}

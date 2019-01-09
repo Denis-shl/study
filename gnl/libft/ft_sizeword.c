@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_size_word.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 12:24:00 by oargrave          #+#    #+#             */
-/*   Updated: 2019/01/08 12:39:22 by oargrave         ###   ########.fr       */
+/*   Created: 2018/12/26 19:56:14 by oargrave          #+#    #+#             */
+/*   Updated: 2018/12/26 20:15:49 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 10
-#include <fcntl.h>
-#include "libft/libft.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	get_next_line(int fd, char **line);
+int	ft_sizeword(char const *s, char c)
+{
+	int	i;
+	int	word;
 
-#endif
+	i = 0;
+	word = 0;
+	while (s[i])
+	{
+		while (s[i] == c)
+			i++;
+		if ((s[i] != c) && (s[i] != '\0'))
+			word++;
+		while ((s[i] != c) && (s[i] != '\0'))
+			i++;
+	}
+	return (word);
+}
