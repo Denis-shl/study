@@ -6,7 +6,7 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:11:10 by oargrave          #+#    #+#             */
-/*   Updated: 2019/01/30 18:13:44 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/01/30 23:03:01 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,49 +31,73 @@ t_list *ft_get(t_list **file, int fd)
 	return (tmp);
 }
 
-
-char *ft_get_next(char **line, t_list point)
+size_t	ft_size_len (t_list *point)
 {
-	if (
+	char *str;
+	size_t i;
 
+	str = point->content;
+	i = 0;
+	while (str[i] != '\0' || str[i] != '\n')
+	{
+		if (str[i] == '\n')
+		{
+			return (i);
+			break ;
+		}
+		i++;
+	}
+	return (i);
+}
 
+char *ft_get_next(char **line, t_list *point)
+{
+	size_t i;
 
+	i = ft_strchr((char *)point->content, '\n') - (char *)point->content;
+	if (ft_strchr((char *)point->content, '\n'))
+	{
+		*line = ft_strsub((char *)point->content, 0, i);
+		if (i < ft_strlen((char*)point->content))
+				{
+					point->content = ft_strdup((char *)point->content + i + 1);
+					(char *)point->content = ft_bzero(point->content);
+				}
 
+	}
+	else 
+	{
+		i = ft_strlen((char *)point->content);
+		*line = ft_strncpy(ft_strnew(i), (char *)point->content, i);
+		point->content = ft_strdup((char *)point->content + i);
+	}
 	return (*line);
 }
 
-
 int	get_next_line(const int fd, char **line)
 {
-	int i = 0;
-	int j = 0;
     char *buf;
-	char *poin;
 	static t_list *file;
+	t_list *point;
+	int i;
 
 	*line = NULL;
-	t_list *point;
-
 	if (!(fd) || !(line) || !(BUFF_SIZE))
 		return (-1);
 	if (!(buf = (char*)malloc (sizeof (char) * (BUFF_SIZE + 1))))
 		return (-1);
 	point = ft_get(&file,fd);
-//	point = ft_lstnew("", fd);
 	while (( i = read (fd, buf, BUFF_SIZE)))
 	{
 		buf[i] = '\0';
-		(*point).content = ft_strjoin((char *)point->content,buf);
+		point->content = ft_strjoin((char *)point->content,buf);
 		if (ft_strchr((char *)point->content, '\n'))
-				break ;
+			break ;
 	}
-	*line  = point->content;
+	*line  = ft_get_next(line, point);
 	buf = NULL; 
 	return (1);
 }
-
-
-
 
 int main (int argc, char **argv)
 {
@@ -91,9 +115,13 @@ int main (int argc, char **argv)
 	{
 		printf ("good\n");
 	} 
-//	printf ("%s",line[0]);
+	printf ("\n 1:%s\n",line);
+	if ((i = get_next_line(fd, &line)) == 1)
+	{
+		printf ("good\n");
+	}
+	printf ("\n2:%s\n",line);
 	close (fd);
-	printf ("%s",line);
 	free(line);
 	return (0);
 }
