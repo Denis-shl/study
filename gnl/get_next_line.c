@@ -6,7 +6,7 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 12:11:10 by oargrave          #+#    #+#             */
-/*   Updated: 2019/01/30 23:03:01 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/01/31 12:09:52 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,39 +31,25 @@ t_list *ft_get(t_list **file, int fd)
 	return (tmp);
 }
 
-size_t	ft_size_len (t_list *point)
-{
-	char *str;
-	size_t i;
-
-	str = point->content;
-	i = 0;
-	while (str[i] != '\0' || str[i] != '\n')
-	{
-		if (str[i] == '\n')
-		{
-			return (i);
-			break ;
-		}
-		i++;
-	}
-	return (i);
-}
 
 char *ft_get_next(char **line, t_list *point)
 {
 	size_t i;
+	char *del; 
 
-	i = ft_strchr((char *)point->content, '\n') - (char *)point->content;
 	if (ft_strchr((char *)point->content, '\n'))
 	{
+		i = ft_strchr((char *)point->content, '\n') - (char *)point->content;
 		*line = ft_strsub((char *)point->content, 0, i);
+		del = point->content;
 		if (i < ft_strlen((char*)point->content))
 				{
 					point->content = ft_strdup((char *)point->content + i + 1);
-					(char *)point->content = ft_bzero(point->content);
+					printf ("\npoint->content%s\n",point->content);
+				//	ft_bzero((char *)point->content,i);
+					free(del);
+					del = NULL;
 				}
-
 	}
 	else 
 	{
@@ -110,6 +96,7 @@ int main (int argc, char **argv)
 	i = 0;
 	if (!(fd = open (argv[1],flags)))
 		return (0);
+	printf ("fd = %d\n",fd);
 	i = 0;
 	if ((i = get_next_line(fd, &line)) == 1)
 	{
@@ -121,7 +108,19 @@ int main (int argc, char **argv)
 		printf ("good\n");
 	}
 	printf ("\n2:%s\n",line);
-	close (fd);
+	if ((i = get_next_line(fd, &line)) == 1)
+	{
+		printf ("good\n");
+	}
+	printf ("\n3:%s\n",line);
+	int fdd;
+	if (!(fdd = open(argv[2], flags)))
+		return (0);
+	printf ("fdd = %d\n",fdd);
+	if ((i = get_next_line(fdd, &line)) == 1)
+	{
+		printf ("\ngood2:::::::%s",line);
+	}	
 	free(line);
 	return (0);
 }
