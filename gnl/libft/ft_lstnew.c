@@ -6,7 +6,7 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 16:50:27 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/21 20:45:56 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/02/06 13:59:25 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 		if (!(point->content = malloc(content_size)))
 		{
 			free(point);
+			point = NULL;
 			return (NULL);
 		}
 		ft_memcpy(point->content, content, content_size);
