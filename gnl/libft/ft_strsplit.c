@@ -6,7 +6,7 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 18:09:19 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/27 15:23:38 by oargrave         ###   ########.fr       */
+/*   Updated: 2018/12/26 20:12:29 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,14 @@ char			**ft_strsplit(char const *s, char c)
 	int								i;
 	int								y;
 	int								k;
-	int	size;
 
 	y = 0;
 	i = -1;
 	if (!s || !c)
 		return (NULL);
-	size = ft_sizeword(s,c);
-	if (!(str = (char**)malloc(sizeof(*str) * (size + 1))))
+	if (!(str = (char**)malloc(sizeof(*str) * (ft_sizeword(s, c) + 1))))
 		return (NULL);
-	while (++i < size)
+	while (++i < ft_sizeword(s, c))
 	{
 		k = 0;
 		if (!(str[i] = ft_strnew(ft_sizesymbol(&s[y], c) + 1)))
