@@ -3,7 +3,11 @@
 int main(int argc, char **argv)
 {
 	int i;
+
+	i = 0;
 	t_list *point;
+
+	point = NULL;
 	if (argc != 2)
 		return (0);
 	if (!(point = check(argv, point)))

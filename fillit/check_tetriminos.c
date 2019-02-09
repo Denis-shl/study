@@ -60,6 +60,7 @@ int	check_tetriminos(char *buf, int len)
 	int com;
 	int i;
 
+	len  = 1;
 	com = 0;
 	i = 0;
 	while (buf[i] != '\0')
