@@ -6,7 +6,19 @@ int main(int argc, char **argv)
 	t_list *point;
 	if (argc != 2)
 		return (0);
-	if (!(check_tetriminos(argv, point)))
+	if (!(point = check(argv, point)))
+	{
+		printf ("ERROR check_tetriminos %d\n",i);
 		return (0);
+	}
+	else 
+		printf ("check passed");
+		
+	while ((point->next))
+		{
+			printf ("\n%s\n",point->content);
+			point = point->next;
+		}
+		
 	return (0);
 }

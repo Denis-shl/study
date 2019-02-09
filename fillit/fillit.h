@@ -9,6 +9,9 @@
 # include <stdio.h> //////delete 
 
 int	main (int argc,char **argv);
-int	check_tetriminos(char **file, t_list *point);
+t_list	*check(char **file, t_list *point);
+int	check_buf(char *buf);
+int	check_tetriminos(char *buf, int len);
+t_list	*record(char *buf, t_list *point, char name);
 
 #endif
