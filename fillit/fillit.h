@@ -16,5 +16,6 @@ t_list	*record(char *buf, t_list *point, char name);
 int		record_name(t_list *point);
 int		generic_map(t_list *point);
 int		ft_sqrt(int nb);
+t_list	*ft_list(t_list *point, t_list *start, int i);
 
 #endif

@@ -20,7 +20,7 @@ t_list	*check(char **file, t_list *point)
 	t_list		*new;
 	char		name;
 
-	name = 'A';
+	name  = 'A';
 	new = point;
 	if (!(buf = (char *)malloc(sizeof(char) * 23)))
 		return (0);
@@ -40,6 +40,7 @@ t_list	*check(char **file, t_list *point)
 		name++;
 	}
 	close(fd);
+	free (buf);
 	return (point);
 }
 
@@ -106,7 +107,9 @@ int		check_tetriminos(char *buf, int len)
 t_list	*record(char *buf, t_list *point, char name)
 {
 	t_list		*new;
+	int i;
 
+	i = ft_strlen(buf);
 	new = point;
 	while (new)
 	{
@@ -116,26 +119,24 @@ t_list	*record(char *buf, t_list *point, char name)
 	{
 		new = ft_lstnew("", 1);
 	}
-	buf[21] = name;
-	buf[22] = '\0';
+	buf[i] = name;
+	buf[i + 1] = '\0';
 	new->content = (char *)ft_strsub(buf, 0, 23);
 	point->next = new;
-	//point = new;
 	return (new);
 }
 
-/*int	record_name (t_list *point) //////////////////
+int	record_name (t_list *point) ////////
 {
-	char *str; 
-
+	char		*str;
+	
 	while (point->next)
 	{
 		point = point->next;
 	}
 	str = point->content;
-	printf ("str = %s",str);
 	if ((str[19] == '\n' && str[20] == '\n') || (str[19] != '\n'))
 			return (0);
 	return (1);
-}*/
+}
          
