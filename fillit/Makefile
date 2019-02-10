@@ -1,4 +1,4 @@
-FILE = fillit.c libft/ft_strlen.c check_tetriminos.c libft/ft_strsub.c libft/ft_lstnew.c libft/ft_memcpy.c libft/ft_lstadd.c
+FILE = fillit.c libft/ft_strlen.c check_tetriminos.c libft/ft_strsub.c libft/ft_lstnew.c libft/ft_memcpy.c libft/ft_lstadd.c generic_map.c
 FLAGS = gcc -Wall -Werror -Wextra  -o
 NAME = fillit
 all:
