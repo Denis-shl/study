@@ -10,8 +10,8 @@ int generic_map(t_list *point)
 		if ((point = point->next))
 			index++;
 	}
-	printf("\nsqrt = %d\n index - %d\n",ft_sqrt(index * 4), index);
-	return (0);
+	//printf("\nsqrt = %d\n index - %d\n",ft_sqrt(index * 4), index);
+	return (ft_sqrt(index * 4));
 }
 
 int		ft_sqrt(int nb)

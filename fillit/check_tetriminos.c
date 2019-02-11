@@ -6,21 +6,19 @@
 /*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 10:00:33 by oargrave          #+#    #+#             */
-/*   Updated: 2019/02/10 10:16:57 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/02/11 14:32:48 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_list	*check(char **file, t_list *point)
+t_list	*check(char **file, t_list *point, int i, int fd)
 {
-	int			fd;
-	int			i;
 	char		*buf;
 	t_list		*new;
 	char		name;
 
-	name  = 'A';
+	name = 'A';
 	new = point;
 	if (!(buf = (char *)malloc(sizeof(char) * 23)))
 		return (0);
@@ -29,53 +27,59 @@ t_list	*check(char **file, t_list *point)
 	while ((i = read(fd, buf, 21)))
 	{
 		buf[i] = '\0';
-		if (!(check_buf(buf)))
+		if (!(check_buf(buf, 0, 0, 0)))
 		{
-			printf ("ECHO\n");
+			printf ("\n2:1\n");
 			return (0);
 		}
 		if (buf[0] == '\0')
+		{
+			printf ("2:2");
 			return (0);
+		}
 		point = record(buf, point, name);
 		name++;
 	}
 	close(fd);
-	free (buf);
+	free(buf);
 	return (point);
 }
 
-int		check_buf(char *buf)
+int		check_buf(char *buf, int i, int sharp, int point)
 {
 	int			len;
-	int			i;
-	int			sharp;
-	int			point;
 	int			poin;
 
-	sharp = 0;
-	i = 0;
-	point = 0;
 	poin = 0;
 	len = ft_strlen(buf);
 	while (buf[i] != '\0')
 	{
 		if (buf[i] != '.' && buf[i] != '#' && buf[i] != '\n')
+		{
+			printf ("buf\n");
 			return (0);
-	
+		}
 		if (buf[i] == '\n' && (i != 4 && i != 9 && i != 14\
 					&& i != 19 && i != 20))
+		{
+			printf ("buf 2\n");
 			return (0);
+		}
 		if (buf[i] == '#')
 			sharp++;
-		else
-			if (buf[i] == '\n')
-			 poin++;
+			else
+		if (buf[i] == '\n')
+			poin++;
 		else
 			point++;
 		i++;
 	}
-	if (((sharp != 4 || point != 12) && (poin != 4 || poin != 5 || poin != 3)) || (!(check_tetriminos(buf, i))))
+	if (((sharp != 4 || point != 12) && (poin != 4 || poin != 5\
+					|| poin != 3)) || (!(check_tetriminos(buf, i))))
+					{
+						printf ("sharp = \n %d \n point =  %d\npoi = %d\n",sharp, point, poin);
 		return (0);
+					}
 	return (1);
 }
 
@@ -107,7 +111,7 @@ int		check_tetriminos(char *buf, int len)
 t_list	*record(char *buf, t_list *point, char name)
 {
 	t_list		*new;
-	int i;
+	int			i;
 
 	i = ft_strlen(buf);
 	new = point;
@@ -126,17 +130,16 @@ t_list	*record(char *buf, t_list *point, char name)
 	return (new);
 }
 
-int	record_name (t_list *point) ////////
+int		record_name(t_list *point)
 {
-	char		*str;
-	
+	char			*str;
+
 	while (point->next)
 	{
 		point = point->next;
 	}
 	str = point->content;
 	if ((str[19] == '\n' && str[20] == '\n') || (str[19] != '\n'))
-			return (0);
+		return (0);
 	return (1);
 }
-         
