@@ -34,34 +34,6 @@ int		ft_pos(char *map, int start)		//Находит позицию первой 
 }
 
 
-int		check_for_fit(char *map,t_list *point) //проверяет можно ли подставить тетринку на найденную координату точки и возвращает значение разницы, на которую надо смещать тетринку
-{	
-	char name;
-	int pos;
-	int i = -1;
-
-	pos = 0;
-	name = 'A';
-	while (point)
-	{
-		i++;
-		if (!(ft_algorithm(point, map, ft_pos(map, 0), name)))
-			return (0);
-		point = point->next;
-		if ((point) != NULL)
-		{
-				if (!(ft_algorithm((point), map,ft_pos(map, 0), name + 1)))
-					return (0);
-				else 
-					point = point->next;
-		}
-
-	}
-
-	return (1);
-	
-}
-
 void	check_first(char *map, int size_map) //при самом первом заходе в программу, создает карту размеров (size_map X size_map), состояющую из '.' и '\n'
 {
 	int	i;
@@ -93,53 +65,78 @@ void	check_first(char *map, int size_map) //при самом первом за�
 char	*ft_alco(t_list *point, int size_map)
 {
 	char	*map;
-
+//	printf ("size_map %d\n",size_map);
 	map = (char *)malloc(sizeof(char) * size_map * size_map + size_map + 1);
 	check_first(map, size_map);
-	if (!(check_for_fit(map, point)))
+	if (!(check_for_fit(map, point, size_map)))
 	{
+//		printf ("map %s\n",map);
 		free(map);
 		return (ft_alco(point, size_map + 1));
 	}
 	return (map);
 }
 
-int		ft_algorithm(t_list *point, char *map, int pos, char name)
+int		check_for_fit(char *map,t_list *point, int i) //проверяет можно ли подставить тетринку на найденную координату точки и возвращает значение разницы, на которую надо смещать тетринку
+{	
+	int pos;
+	t_list *present;
+
+	pos = 0;
+	while (pos < ((i * i)))
+	{
+		present = point;
+		if (point == NULL)
+			return (1);
+		if (!(ft_algorithm(point, map, ft_pos(map, pos),present)))
+		{
+			pos++;
+			continue ;
+		}
+		if (point->next == NULL || check_for_fit(map, point->next, i))
+			return (1);
+		else 
+		new_map(map, point);
+		pos++;
+			//printf ("map %s - %d \n ",map, pos);
+
+		
+		//if (point->next == NULL)
+		//	return (1);
+		printf ("map \n%s\n %d \n ",map, pos);
+		
+	}
+
+	return (0);
+	
+}
+
+int		ft_algorithm(t_list *point, char *map, int pos, t_list *start)
 {
 	int *cor;
 	int i;
 	int j;
 	char *nam;
+	int r;
 
-	j = 0;
+	r = 0;
 	i = 0;
 	cor = (int *)point->content_size;
 	cor = ft_difference(cor, pos, map, 0);
-	//printf ("pos %d",pos);
-	if (pos > (int)(ft_strlen(map) - 1))
-	{
-		printf ("ERRRRORR");
-		return (0);
-	}
-	/*while (i < 4)
-	{
-		printf("\n%d ", cor[i]);
-		i++;
-	}*/
-	i = 0;
+
 	nam = point->content;
-	while (i < 4)
+	j = ft_strlen(nam);
+	while (i != 4)
 	{
-		while (j < 4)
-		{
-			if ((map[cor[j]] != '.'))
-				return (ft_algorithm(point, map, pos + 1, name));
-			j++;
+		while (r != 4)
+		{ 
+			if (map[cor[r]] != '.')
+				return (0);
+			r++;
 		}
-		map[cor[i]] = nam[ft_strlen(nam) - 1];
+			map[cor[i]] = nam[j - 1];
 		i++;
 	}
-	
 	return (1);
 }
 
@@ -168,9 +165,9 @@ int		*ft_difference(int *cor, int pos,char *map, int len)
 		else if ((cor[i] - cor[i - 1]) > 1 && len > 4)
 			difference = difference - ft_abs(len - 4);
 		in[j] = cor[j] - difference;
-		printf ("in[%d]%d\n", i, in[i]);
-		if (i % 4 == 0)
-			printf("\n");
+		//printf ("in[%d]%d\n", i, in[i]);
+		//if (i % 4 == 0)
+		//	printf("\n");
 		i++;
 		j++;
 	}
@@ -182,4 +179,30 @@ int		*ft_difference(int *cor, int pos,char *map, int len)
 	}*/
 	
 	return (in);
+}
+char	*new_map(char *map, t_list *point) //при самом первом заходе в программу, создает карту размеров (size_map X size_map), состояющую из '.' и '\n'
+{
+	int	i;
+	int	count;
+	char *str;
+	char name;
+//	printf ("map %s\n",map);
+
+	str = point->content;
+	name = str[ft_strlen(str) - 1];
+//	printf ("\nname  %c\n",name);
+	i = 0;
+	count = 0;
+	while (count != 4 && map[i] != '\0')
+	{
+		if (map[i] == name)
+		{
+			map[i] = '.';
+			count++;
+		}
+		i++;
+
+	}
+//	printf ("new map = %s\n",map);
+	return (map);
 }
