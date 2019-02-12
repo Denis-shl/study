@@ -45,12 +45,12 @@ int		check_for_fit(char *map,t_list *point) //проверяет можно ли
 	while (point)
 	{
 		i++;
-		if (!(ft_algorithm(point, map, pos + 1, name)))
+		if (!(ft_algorithm(point, map, ft_pos(map, 0), name)))
 			return (0);
 		point = point->next;
 		if ((point) != NULL)
 		{
-				if (!(ft_algorithm((point), map, pos, name + 1)))
+				if (!(ft_algorithm((point), map,ft_pos(map, 0), name + 1)))
 					return (0);
 				else 
 					point = point->next;
@@ -116,7 +116,7 @@ int		ft_algorithm(t_list *point, char *map, int pos, char name)
 	cor = (int *)point->content_size;
 	cor = ft_difference(cor, pos, map, 0);
 	//printf ("pos %d",pos);
-	if (pos > (int)(ft_strlen(map) - 3))
+	if (pos > (int)(ft_strlen(map) - 1))
 	{
 		printf ("ERRRRORR");
 		return (0);
