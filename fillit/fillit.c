@@ -31,14 +31,25 @@ int		main(int argc, char **argv)
 	point = point->next;
 	new = point;
 	point = ft_list(point, new, size);
-	map = ft_alco(point, i); //ИСПРАВИТЬ 5
-	//printf("%s", map); //УБРАТЬ
+	map = ft_alco(point, i); 
 	i = 0;
 	while (map[i] != '\0')
 	{
 		ft_putchar(map[i]);
 		i++;
 	}
+	t_list *fres;
+
+	fres = NULL;
+	while (point != NULL)
+	{	
+		free(fres);
+		fres = point;
+		free(fres->content);
+		free((void *)fres->content_size);
+		point = point->next;
+	}
+	free (map);
 	return (0);
 }
 

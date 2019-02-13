@@ -24,12 +24,8 @@ int		ft_pos(char *map, int start)		//Находит позицию первой 
 	int	i;
 
 	i = start;
-	/*if (!map[i])
-		return (NULL);*/
 	while (map[i] && map[i] != '.')
 		i++;
-	/*if (map[i] == '\0')
-		return (NULL);*/
 	return (i);
 }
 
@@ -65,12 +61,12 @@ void	check_first(char *map, int size_map) //при самом первом за�
 char	*ft_alco(t_list *point, int size_map)
 {
 	char	*map;
-//	printf ("size_map %d\n",size_map);
-	map = (char *)malloc(sizeof(char) * size_map * size_map + size_map + 1);
+
+	if (!(map = (char *)malloc(sizeof(char) * size_map * size_map + size_map + 1)))
+		return (0);
 	check_first(map, size_map);
 	if (!(check_for_fit(map, point, size_map)))
 	{
-//		printf ("map %s\n",map);
 		free(map);
 		return (ft_alco(point, size_map + 1));
 	}
@@ -98,13 +94,6 @@ int		check_for_fit(char *map,t_list *point, int i) //проверяет можн
 		else 
 		new_map(map, point);
 		pos++;
-			//printf ("map %s - %d \n ",map, pos);
-
-		
-		//if (point->next == NULL)
-		//	return (1);
-		printf ("map \n%s\n %d \n ",map, pos);
-		
 	}
 
 	return (0);
