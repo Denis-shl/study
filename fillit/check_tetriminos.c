@@ -6,7 +6,7 @@
 /*   By: qmebble <qmebble@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/10 10:00:33 by oargrave          #+#    #+#             */
-/*   Updated: 2019/02/12 18:36:51 by qmebble          ###   ########.fr       */
+/*   Updated: 2019/02/13 23:00:56 by qmebble          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,16 @@ int		check_tetriminos(char *buf, int len)
 	i = 0;
 	while (buf[i] != '\0')
 	{
-		if ((buf[i] == '#' && buf[i + 1] == '#') ||
-			(buf[i] == '#' && buf[i + 5] == '#') ||
-			(buf[i] == '#' && buf[i - 5] == '#'))
-			com++;
+		if (buf[i] == '#')
+		{
+			com += buf[i + 1] == '#' ? 1 : 0;
+			com += buf[i + 5] == '#' ? 1 : 0;
+			com += buf[i - 1] == '#' ? 1 : 0;
+			com += buf[i - 5] == '#' ? 1 : 0;
+		}
 		i++;
 	}
-	if (buf[0] == '\0' || com < 3)
+	if (buf[0] == '\0' || com < 6)
 		return (0);
 	return (1);
 }

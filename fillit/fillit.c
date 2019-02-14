@@ -6,7 +6,7 @@
 /*   By: qmebble <qmebble@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 18:17:07 by qmebble           #+#    #+#             */
-/*   Updated: 2019/02/12 18:29:26 by qmebble          ###   ########.fr       */
+/*   Updated: 2019/02/13 23:02:34 by qmebble          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,22 @@ int		main(int argc, char **argv)
 	map = NULL;
 	size = 0;
 	point = ft_lstnew("", 1);
-	if (argc != 2 || !(new = check(argv, point, i, size)) ||
-		!(record_name(point)))
-		return (0);
-	i = generic_map(point);
-	point = point->next;
-	new = point;
-	point = ft_list(point, new, size);
-	map = ft_alco(point, i); //ИСПРАВИТЬ 5
-	//printf("%s", map); //УБРАТЬ
-	i = 0;
-	while (map[i] != '\0')
+	if (argc != 2 || !(new = check(argv, point, i, size))
+	|| !(record_name(point)))
 	{
-		ft_putchar(map[i]);
-		i++;
+		ft_putstr("error");
+		return (0);
 	}
+	i = generic_map(point);
+	new = point;
+	point = point->next;
+	//free(new);
+	point = ft_list(point, point, size);
+	map = ft_alco(point, i);
+	ft_putstr(map);
+	free (new);
+	free(point);
+	free(map);
 	return (0);
 }
 

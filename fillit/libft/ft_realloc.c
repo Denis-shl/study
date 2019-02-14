@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qmebble <qmebble@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/26 20:25:17 by oargrave          #+#    #+#             */
-/*   Updated: 2018/12/26 20:29:10 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/02/13 23:21:45 by qmebble          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void	*ft_realloc(void *str, size_t prev, size_t size)
 		return (NULL);
 	}
 	ft_memcpy(new, str, prev);
-	free(ptr);
+	free(new);
 	return (new);
 }

@@ -6,12 +6,25 @@
 #    By: qmebble <qmebble@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/12 18:15:07 by qmebble           #+#    #+#              #
-#    Updated: 2019/02/12 18:15:18 by qmebble          ###   ########.fr        #
+#    Updated: 2019/02/14 20:24:28 by qmebble          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILE = fillit.c libft/ft_strlen.c check_tetriminos.c libft/ft_strsub.c libft/ft_lstnew.c libft/ft_memcpy.c libft/ft_lstadd.c generic_map.c ft_alco.c libft/ft_putchar.c
-FLAGS = gcc -g  -o
+FILE = fillit.c ft_alco.c ft_dlc.c generic_map.c check_tetriminos.c
+FLAGS = -Wall -Wextra -Werror
 NAME = fillit
-all:
-	$(FLAGS) fillit $(FILE)
+
+all: $(NAME)
+
+$(NAME):
+	@make --directory libft
+	@gcc $(FLAGS) $(FILE) libft/libft.a -o $(NAME)
+
+clean:
+	@make --directory libft clean
+
+fclean: clean
+	@make --directory libft fclean
+	@rm -f $(NAME)
+
+re: fclean all
