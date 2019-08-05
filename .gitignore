@@ -4,6 +4,10 @@
 #test files
 test*.c
 
+#debug files
+.vscode/
+*DS_Store*
+*swp*
 # Object files
 *.o
 *.ko
