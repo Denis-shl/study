@@ -1,7 +1,8 @@
+FILE = main.c pars.c
 
 all : 
 	@make -C ../libft/ all
-	gcc main.c -I. ../libft/lib/libft.a
+	gcc -g $(FILE) -I. ../libft/lib/libft.a
 	# clean:
 
 # fclean: clean 
