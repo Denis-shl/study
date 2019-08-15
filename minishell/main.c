@@ -10,17 +10,20 @@
 
 
 
-void ft_exit()
+void ft_exit(t_buff *buf)
 {
+	if (buf && buf->str != NULL)
+	{
+		ft_buffdel(&buf);
+	}
 	exit(0);
 }
 
-char **rewrite_env(char **env)
+void rewrite_env(char **env)
 {
-	char **n_env;
-	int size_en = 0;
-	int i = 0;
-	int size = 0;
+	int size_en;
+	int i ;
+	int size;
 	int j;
 
 	size_en = 0;
@@ -28,13 +31,13 @@ char **rewrite_env(char **env)
 	while (env[size_en])
 		size_en++;
 	if (!(n_env = (char **)malloc(sizeof(char *) * (size_en + 1))))
-		ft_exit();
+		ft_exit(NULL);
 	size_en = 0;
 	while (env[i] != NULL)
 	{
 		size = ft_strlen(env[size_en]);
 		if (!(n_env[i] = (char *)malloc(sizeof(char) * (size + 1))))
-			ft_exit();
+			ft_exit(NULL);
 		j = 0;
 		while (env[i][j] != '\0')
 		{
@@ -45,7 +48,6 @@ char **rewrite_env(char **env)
 		i++;
 		size_en++;
 	}
-	return (n_env);
 }
 
 
@@ -53,12 +55,15 @@ char **rewrite_env(char **env)
 /*
 **	сбор функций 
 */
-int ft_container(t_buff *buf, char **env)
+void ft_container(t_buff *buf, char **env)
 {
-	char **n_env;
-	n_env = rewrite_env(env);
-	ft_pars(buf, n_env);
-	return (1);
+	rewrite_env(env);
+	if (ft_pars(buf) == 0)
+	{
+		printf("ERROR : %s",buf->str);
+		return ;
+	}
+	return ;
 }
 
 void loop(int argc, char **argv, char **env)
@@ -75,21 +80,17 @@ void loop(int argc, char **argv, char **env)
 		{
 			if (sub == '\n')
 				break ;
+			if (i == 0)
+				ft_exit(buf);
 			ft_buffaddsymb(buf, sub);
 		}
-		if (strstr(buf->str, EXIT) != NULL)
-			ft_exit ();
-		if (i == 0)
-			ft_exit();
-		// printf ("%s", buf->str);// test buf->str;
-		if (!(ft_container(buf, env)))
-			continue ;
+		ft_container(buf, env);
 		ft_buffdel(&buf);
-
+		
 	}
 }
 
-int main (int argc, char **argv, char **env)
+int main (int argc, char **argv,char **env)
 {
 	loop (argc, argv, env);
 	return (0);

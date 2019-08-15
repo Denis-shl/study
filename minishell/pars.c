@@ -11,6 +11,8 @@ void delete_char(char **str)
 	int index;
 
 	index = 0;
+	if (!str)
+		return ;
 	while (str[index] != NULL)
 		index++;
 	while (index != 0)
@@ -22,7 +24,7 @@ void delete_char(char **str)
 	str = NULL;
 }
 
-char *clean_way(char **str, char *name)
+static char *clean_way(char **str, char *name)
 {
 	int index;
 	char *way;
@@ -42,7 +44,7 @@ char *clean_way(char **str, char *name)
 	return (NULL);
 }
 
-char *finding_ways(char *name, char **env)
+static char *finding_ways(char *name)
 {
 	char *way;
 	char *str;
@@ -51,12 +53,11 @@ char *finding_ways(char *name, char **env)
 	
 	str = NULL;
 	in_env = 0;
-	while(env[in_env])
+	while(n_env[in_env])
 	{
-		if ((way = strstr(env[in_env], PATH)) != NULL)
+		if ((way = strstr(n_env[in_env], PATH)) != NULL)
 		{
 			str = ft_strcpy(ft_strnew(ft_strlen(way) - 5), way + 5);
-			free(way);
 		}
 		in_env++;
 	}
@@ -70,39 +71,52 @@ char *finding_ways(char *name, char **env)
 /*
 **Новый процесс
 */
-int ft_launch(char **args, char **env)
+static int launch_shell(char **args)
 {
 	pid_t pid, wpid;
 	int status;
 	char *way;
 
-	way = finding_ways(args[0], env);
+	if (!(way = finding_ways(args[0])))
+		return (0);
+	printf ("HELLO2 ");
 	pid = fork();
 	if (pid == 0)
-		execve(way, args, env);
+		execve(way, args, n_env);
 	else 
 	     wpid = wait(&status);
-  return (0);
+  return (1);
 }
 
 /*
 **	парсим сначала по ; потом по пробелу
 */
-void ft_pars(t_buff *buf, char **env)
+int ft_pars(t_buff *buf)
 {
 	char **str;
 	char **command = NULL;
 	int i;
+	int flag;
 
 	i = 0;
 	str = ft_strsplit(buf->str, ';');
 	while (str[i])
 	{
 		command = ft_strsplit(str[i], ' ');
-		ft_launch(command, env);
+		if ((flag = inline_function(command)) == 1)
+			return (0);
+		else if (flag == -1)
+		{
+			delete_char(command);
+			delete_char(str);
+			exit (0);
+		}
+		else
+			launch_shell(command);	
 		delete_char(command);
 		command = NULL;
 		i++;
 	}
 	delete_char(str);
+	return (1);
 }
