@@ -16,6 +16,7 @@ char **n_env;
 /*
 **	const
 */
+
 #define TIL "~"
 #define PATH "PATH="
 #define ECHO "echo"
@@ -26,6 +27,7 @@ char **n_env;
 #define EXIT "exit"
 #define HOME_DIR "/Users"
 #define MAX_DIR 100
+
 /*
 **	File
 */

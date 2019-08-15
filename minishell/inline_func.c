@@ -11,6 +11,38 @@ void ft_env()
 		index++;
 	}
 }
+void 	del_commas(char **str)
+{
+	int index;
+	int jindex;
+
+	index = 0;
+
+	while (str[index] != NULL)
+	{
+		jindex = 0;
+		while (str[index][jindex] != '\0')
+		{
+			if (str[index][jindex] == '"')
+				str[index][jindex] = 1;
+			jindex++;
+		}
+		index++;
+	}
+}
+
+void ft_echo(char **str)
+{
+	int index;
+
+	index = 1;
+	del_commas(str);
+	while (str[index] != NULL)
+	{
+		printf("%s\n", str[index]);
+		index++;
+	}
+}
 
 int inline_function(char **command)
 {
@@ -18,7 +50,7 @@ int inline_function(char **command)
 
 	index = 0;
 	if(strstr(command[0], ECHO) != NULL)
-		;
+		ft_echo(command);
 	else if(strstr(command[0], CD) != NULL)
 		ft_cd(command);
 	else if(strstr(command[0], SETENV) != NULL)
