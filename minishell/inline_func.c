@@ -39,9 +39,11 @@ void ft_echo(char **str)
 	del_commas(str);
 	while (str[index] != NULL)
 	{
-		printf("%s\n", str[index]);
+		write(1, str[index], ft_strlen(str[index]));
+		write(1, " ", 1);
 		index++;
 	}
+	ft_putchar('\n');
 }
 
 int inline_function(char **command)
@@ -54,9 +56,9 @@ int inline_function(char **command)
 	else if(strstr(command[0], CD) != NULL)
 		ft_cd(command);
 	else if(strstr(command[0], SETENV) != NULL)
-		;
-	else if(strstr(command[0], UNSETNV) != NULL)
-		;
+		ft_setenv(command);
+	else if(strstr(command[0], UNSETENV) != NULL)
+		ft_unsetenv(command[1]);
 	else if(strstr(command[0], ENV) != NULL)
 		ft_env();
 	else if(strstr(command[0], EXIT) != NULL)

@@ -1,61 +1,70 @@
 #include "includes/header.h"
 
-static char	*home_dir()
+
+void change_env(char *prev_dir)
 {
-	int				index;
-	char 			*home;
+	int index;
+	char *current_dir;
+
+	current_dir = getcwd(NULL, MAX_DIR);
 
 	index = 0;
-	home = NULL;
 	while (n_env[index] != NULL)
 	{
-		if (((home = strstr(n_env[index], "HOME=/")) != NULL))
+		if (ft_strnstr(n_env[index], PWD, 5) != NULL)
 		{
-			home = home + 5;
-			return (home);
+			free(n_env[index]);
+			n_env[index] = ft_strnew(MAX_DIR);
+			strcpy(n_env[index], PWD);
+			n_env[index] = ft_strcat(n_env[index], current_dir);
+		}
+		if (ft_strnstr(n_env[index], OLDPWD, 8) != NULL)
+		{
+			free(n_env[index]);
+			n_env[index] = ft_strnew(MAX_DIR);
+			strcpy(n_env[index], OLDPWD);
+			n_env[index] = ft_strcat(n_env[index], prev_dir);
 		}
 		index++;
 	}
-	return (NULL);
 }
 
-static int	ft_check_dir(char *str)
+char *pr_dir()
 {
-	DIR			*dir;
+	char *new_dir;
+	int index;
 
-	if (strcmp(TIL, str) == 0)
-		return (1);
-	dir = opendir(str);
-	if (dir == NULL)
-		return (0);
-	else 
-		closedir(dir);
-	return (1);
-}
-
-void		ft_cd(char **command)
-{
-	char *home_d;
-	char *str;
-
-	if (command[1] == NULL || (strcmp(command[1], TIL) == 0))
+	index = 0;
+	while (n_env[index] != NULL)
 	{
-		if (!(home_d = home_dir()))
-			home_d = HOME_DIR;
-		chdir(home_d);
+		if ((new_dir = ft_strnstr(n_env[index], OLDPWD, 8)) != NULL)
+		 return (new_dir + 7);
+		index++; 
 	}
-	else 
+	return (new_dir);
+}
+
+void ft_cd_way(char **command, char *current_dir, char *str, char *new_dir)
+{
+	if (ft_check_dir(command[1]) == 1)
 	{
-		if (!(ft_check_dir(command[1])))
-		{
-			printf ("cd: not a directory: %s\n", command[1]);
-			return ;
-		}
-		home_d = ft_strjoin(getcwd(NULL, MAX_DIR), "/");
-		str = home_d;
-		home_d = ft_strjoin(home_d, command[1]);
-		chdir(home_d);
-		free(home_d);
+		new_dir = ft_strjoin(current_dir, "/");
+		str = new_dir;
+		new_dir = ft_strjoin(new_dir, command[1]);
+		chdir(new_dir);
+		change_env(current_dir);
+		free(new_dir);
 		free(str);
 	}
+	else
+	{
+		new_dir = pr_dir();
+		chdir(new_dir);
+		change_env(current_dir);
+		new_dir = getcwd(NULL, MAX_DIR);
+		printf ("%s\n", new_dir);
+		free(new_dir);
+	}
 }
+
+

@@ -30,6 +30,7 @@ void rewrite_env(char **env)
 	i = 0;
 	while (env[size_en])
 		size_en++;
+	count_env = size_en;
 	if (!(n_env = (char **)malloc(sizeof(char *) * (size_en + 1))))
 		ft_exit(NULL);
 	size_en = 0;
@@ -55,18 +56,16 @@ void rewrite_env(char **env)
 /*
 **	сбор функций 
 */
-void ft_container(t_buff *buf, char **env)
+void ft_container(t_buff *buf)
 {
-	rewrite_env(env);
 	if (ft_pars(buf) == 0)
 	{
-		printf("ERROR : %s",buf->str);
 		return ;
 	}
 	return ;
 }
 
-void loop(int argc, char **argv, char **env)
+void loop(int argc, char **argv)
 {
 	t_buff *buf;
 	char sub;
@@ -84,14 +83,14 @@ void loop(int argc, char **argv, char **env)
 				ft_exit(buf);
 			ft_buffaddsymb(buf, sub);
 		}
-		ft_container(buf, env);
+		ft_container(buf);
 		ft_buffdel(&buf);
-		
 	}
 }
 
 int main (int argc, char **argv,char **env)
 {
-	loop (argc, argv, env);
+	rewrite_env(env);
+	loop (argc, argv);
 	return (0);
 }

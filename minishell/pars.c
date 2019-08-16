@@ -79,7 +79,6 @@ static int launch_shell(char **args)
 
 	if (!(way = finding_ways(args[0])))
 		return (0);
-	printf ("HELLO2 ");
 	pid = fork();
 	if (pid == 0)
 		execve(way, args, n_env);
@@ -100,19 +99,22 @@ int ft_pars(t_buff *buf)
 
 	i = 0;
 	str = ft_strsplit(buf->str, ';');
-	while (str[i])
+	while (str[i] != NULL)
 	{
 		command = ft_strsplit(str[i], ' ');
 		if ((flag = inline_function(command)) == 1)
-			return (0);
+			;
 		else if (flag == -1)
 		{
 			delete_char(command);
 			delete_char(str);
+			printf ("exit ft_pars;\n");
 			exit (0);
 		}
 		else
-			launch_shell(command);	
+			flag = launch_shell(command);
+		if (flag == 0)
+			printf ("command not found:%s\n", command[0]); 	
 		delete_char(command);
 		command = NULL;
 		i++;

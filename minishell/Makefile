@@ -1,4 +1,4 @@
-FILE = main.c pars.c inline_func.c ft_cd.c
+FILE = main.c pars.c inline_func.c ft_cd.c ft_cd_too.c setenv.c unsetenv.c
 
 all : 
 	@make -C ../libft/ all
