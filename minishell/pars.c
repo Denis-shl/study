@@ -71,6 +71,36 @@ static char *finding_ways(char *name)
 /*
 **Новый процесс
 */
+
+static char *lanunch_cur_dir(char **args)
+{
+	char *way;
+	char *tmp;
+
+	way = NULL;
+	way = getcwd(NULL, MAX_DIR);
+	if(access(args[0], 0) == -1)
+	{
+		printf("Access not found\n");
+		return (NULL);
+	}
+	if(access(args[0], 1) == -1)
+	{
+		printf ("the file is not executable\n");
+		return (NULL);
+	}
+	else
+	{
+		tmp = way;
+		way = ft_strjoin(way, "/");
+		free(tmp);
+		tmp = ft_strjoin(way, args[0]);
+		free(way);
+		return (tmp);
+	}
+	return(NULL);
+}
+
 static int launch_shell(char **args)
 {
 	pid_t pid, wpid;
@@ -78,7 +108,10 @@ static int launch_shell(char **args)
 	char *way;
 
 	if (!(way = finding_ways(args[0])))
-		return (0);
+	{
+		if ((way = lanunch_cur_dir(args)) == NULL)
+			return (0);
+	}
 	pid = fork();
 	if (pid == 0)
 		execve(way, args, n_env);
@@ -102,6 +135,11 @@ int ft_pars(t_buff *buf)
 	while (str[i] != NULL)
 	{
 		command = ft_strsplit(str[i], ' ');
+		if (command[0] == NULL)
+		{
+			i++;
+			continue ;
+		}
 		if ((flag = inline_function(command)) == 1)
 			;
 		else if (flag == -1)

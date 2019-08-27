@@ -26,13 +26,10 @@ static int	ft_len(int n)
 		i = 1;
 		n *= -1;
 	}
-	if (n > 0)
+	while (n > 0)
 	{
-		while (n > 0)
-		{
-			n /= 10;
-			i++;
-		}
+		n /= 10;
+		i++;
 	}
 	return (i);
 }

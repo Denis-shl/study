@@ -37,6 +37,8 @@ void ft_echo(char **str)
 
 	index = 1;
 	del_commas(str);
+	if (str[1] != NULL && ft_strcmp(str[1], NOTNEWLINE) == 0)
+		return ;
 	while (str[index] != NULL)
 	{
 		write(1, str[index], ft_strlen(str[index]));
@@ -49,7 +51,7 @@ void ft_echo(char **str)
 int inline_function(char **command)
 {
 	int index;
-
+	
 	index = 0;
 	if(strstr(command[0], ECHO) != NULL)
 		ft_echo(command);

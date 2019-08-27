@@ -30,6 +30,8 @@ unsigned int count_env;
 #define PREV_DIR "-"
 #define PWD "PWD="
 #define OLDPWD "OLDPWD="
+#define NOTNEWLINE "-n"
+
 /*
 **	File
 */

@@ -9,7 +9,6 @@
 */
 
 
-
 void ft_exit(t_buff *buf)
 {
 	if (buf && buf->str != NULL)

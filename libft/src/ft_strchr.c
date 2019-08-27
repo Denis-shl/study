@@ -15,10 +15,8 @@
 char	*ft_strchr(const char *s, int c)
 {
 	char		sumbol;
-	int			index;
 
 	sumbol = c;
-	index = 0;
 	if (*s == sumbol)
 		return ((char*)s);
 	while (*s != '\0')
