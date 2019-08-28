@@ -140,6 +140,7 @@ int ft_pars(t_buff *buf)
 			i++;
 			continue ;
 		}
+		del_commas(command);
 		if ((flag = inline_function(command)) == 1)
 			;
 		else if (flag == -1)

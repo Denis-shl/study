@@ -11,8 +11,8 @@
 /*
 **		Global variables
 */
-char **n_env;
-unsigned int count_env;
+char			**n_env;
+unsigned int	count_env;
 /*
 **	const
 */
@@ -31,12 +31,15 @@ unsigned int count_env;
 #define PWD "PWD="
 #define OLDPWD "OLDPWD="
 #define NOTNEWLINE "-n"
+#define SHLVL "SHLVL="
+#define DOLL '$'
 
 /*
 **	File
 */
 
 void	ft_exit(t_buff *buf);
+void 	del_commas(char **str);
 
 int		ft_pars(t_buff *buf);
 void	loop(int argc, char **argv);
@@ -48,12 +51,12 @@ void	delete_char(char **str);
 /*
 ** cd 
 */
-void 	ft_cd(char **command);
+void	ft_cd(char **command);
 int		ft_check_dir(char *str);
 int		ft_cd_com(char **command, char *new_dir, char *current_dir, char *str);
-void 	ft_til(char *current_dir, char *new_dir, char *str, char **command);
-void 	ft_cd_way(char **command, char *current_dir, char *str, char *new_dir);
-char 	*pr_dir();
+void	ft_til(char *current_dir, char *new_dir, char *str, char **command);
+void	ft_cd_way(char **command, char *current_dir, char *str, char *new_dir);
+char	*pr_dir();
 void	change_env(char *prev_dir);
 char	*home_dir();
 

@@ -48,6 +48,52 @@ void ft_echo(char **str)
 	ft_putchar('\n');
 }
 
+
+char *ft_search(char *str)
+{
+	int index;
+	char *command;
+	char **tmp;
+
+	index = 0;
+	while (n_env[index] != NULL)
+	{
+		if (strstr(n_env[index], str) != NULL)
+		{
+			tmp = ft_strsplit(n_env[index], '=');
+			command = ft_strdup(tmp[1]);
+			delete_char(tmp);
+			return (command);
+		}
+		index++;
+	}	
+	return (NULL);
+}
+void ft_dollar(char **command)
+{
+	int index;
+	char *str;
+	char *com;
+	char **new_command;
+
+	index = 0;
+	str = ft_strdup(++(command[0]));
+	com = ft_search(str);
+	if (com != NULL)
+	{
+		// delete_char(command);
+		new_command = (char **)malloc(sizeof(char) * 2);
+		new_command[0] = com;
+		new_command[1] = NULL;
+		inline_function(new_command);
+	}
+	else
+	{
+		printf ("%s: Uwndefined variable.\n",str);
+	}
+
+}
+
 int inline_function(char **command)
 {
 	int index;
@@ -63,6 +109,8 @@ int inline_function(char **command)
 		ft_unsetenv(command[1]);
 	else if(strstr(command[0], ENV) != NULL)
 		ft_env();
+	else if (command[0][0] == DOLL)
+		ft_dollar(command);
 	else if(strstr(command[0], EXIT) != NULL)
 		return (-1);
 	else return (0);

@@ -18,6 +18,26 @@ void ft_exit(t_buff *buf)
 	exit(0);
 }
 
+void ft_rouding(char *str)
+{
+
+}
+
+void ft_shlvl(char *str)
+{
+	int index;
+	char *tmp;
+
+	index = 0;
+	while (str[index] != '\0')
+	{
+		if (str[index] >= 48 && str[index] < 57 && str[index + 1] == '\0')
+			str[index]++;
+		index++;
+	}
+
+}
+
 void rewrite_env(char **env)
 {
 	int size_en;
@@ -35,6 +55,8 @@ void rewrite_env(char **env)
 	size_en = 0;
 	while (env[i] != NULL)
 	{
+		if (ft_strncmp(env[i], SHLVL, ft_strlen(SHLVL)) == 0)
+			ft_shlvl(env[i]);
 		size = ft_strlen(env[size_en]);
 		if (!(n_env[i] = (char *)malloc(sizeof(char) * (size + 1))))
 			ft_exit(NULL);

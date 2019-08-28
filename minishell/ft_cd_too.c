@@ -29,8 +29,8 @@ void ft_til(char *current_dir, char *new_dir, char *str, char **command)
 	command[1] = ft_strnew(ft_strlen(new_dir) + ft_strlen(str) + 1);
 	strcpy(command[1], new_dir);
 	command[1] = ft_strcat(command[1], str);
-	change_env(current_dir);
 	chdir(command[1]);
+	change_env(current_dir);
 	free(--str);
 	return ;
 }

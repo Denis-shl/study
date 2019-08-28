@@ -7,7 +7,6 @@ void change_env(char *prev_dir)
 	char *current_dir;
 
 	current_dir = getcwd(NULL, MAX_DIR);
-
 	index = 0;
 	while (n_env[index] != NULL)
 	{
