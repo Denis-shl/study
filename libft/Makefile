@@ -57,5 +57,6 @@ clean:
 		rm -rf obj/*.o
 fclean: clean
 		rm -f $(NAME)
-		# rm -rf lib
+		rm -rf lib
+		rm -rf obj
 re: fclean all
