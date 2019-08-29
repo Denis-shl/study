@@ -58,40 +58,43 @@ char *ft_search(char *str)
 	index = 0;
 	while (n_env[index] != NULL)
 	{
-		if (strstr(n_env[index], str) != NULL)
+		if (ft_strncmp(n_env[index], str, ft_strlen(str)) == 0)
 		{
 			tmp = ft_strsplit(n_env[index], '=');
 			command = ft_strdup(tmp[1]);
 			delete_char(tmp);
+			printf ("%s\n", command);
 			return (command);
 		}
 		index++;
 	}	
 	return (NULL);
 }
-void ft_dollar(char **command)
+int ft_dollar(char **command)
 {
 	int index;
 	char *str;
 	char *com;
 	char **new_command;
+	char *line;
 
+	
+	com = NULL;
+	line = command[0];
 	index = 0;
-	str = ft_strdup(++(command[0]));
+	str = ft_strdup(line + 1);
 	com = ft_search(str);
 	if (com != NULL)
 	{
-		// delete_char(command);
 		new_command = (char **)malloc(sizeof(char) * 2);
 		new_command[0] = com;
 		new_command[1] = NULL;
-		inline_function(new_command);
+		if ((inline_function(new_command) == 0))
+			launch_shell(new_command);
 	}
 	else
-	{
 		printf ("%s: Uwndefined variable.\n",str);
-	}
-
+	return (0);
 }
 
 int inline_function(char **command)

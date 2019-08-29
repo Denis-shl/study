@@ -40,6 +40,7 @@ unsigned int	count_env;
 
 void	ft_exit(t_buff *buf);
 void 	del_commas(char **str);
+int		launch_shell(char **args);
 
 int		ft_pars(t_buff *buf);
 void	loop(int argc, char **argv);

@@ -13,12 +13,12 @@ void delete_char(char **str)
 	index = 0;
 	if (!str)
 		return ;
+	// while (str[index] != NULL)
+	// 	index++;
 	while (str[index] != NULL)
-		index++;
-	while (index != 0)
 	{
-		index--;
 		free(str[index]);
+		index++;
 	}
 	free(str);
 	str = NULL;
@@ -101,7 +101,7 @@ static char *lanunch_cur_dir(char **args)
 	return(NULL);
 }
 
-static int launch_shell(char **args)
+int		launch_shell(char **args)
 {
 	pid_t pid, wpid;
 	int status;
