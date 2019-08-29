@@ -109,7 +109,7 @@ int inline_function(char **command)
 	else if(strstr(command[0], SETENV) != NULL)
 		ft_setenv(command);
 	else if(strstr(command[0], UNSETENV) != NULL)
-		ft_unsetenv(command[1]);
+		ft_unsetenv(command);
 	else if(strstr(command[0], ENV) != NULL)
 		ft_env();
 	else if (command[0][0] == DOLL)

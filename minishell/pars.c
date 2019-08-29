@@ -13,8 +13,6 @@ void delete_char(char **str)
 	index = 0;
 	if (!str)
 		return ;
-	// while (str[index] != NULL)
-	// 	index++;
 	while (str[index] != NULL)
 	{
 		free(str[index]);
@@ -147,7 +145,6 @@ int ft_pars(t_buff *buf)
 		{
 			delete_char(command);
 			delete_char(str);
-			printf ("exit ft_pars;\n");
 			exit (0);
 		}
 		else

@@ -41,6 +41,7 @@ unsigned int	count_env;
 void	ft_exit(t_buff *buf);
 void 	del_commas(char **str);
 int		launch_shell(char **args);
+char	*ft_search(char *str);
 
 int		ft_pars(t_buff *buf);
 void	loop(int argc, char **argv);
@@ -67,6 +68,6 @@ char	*home_dir();
 
 void	ft_setenv(char **command);
 
-void	ft_unsetenv(char *name);
+void	ft_unsetenv(char **name);
 
 #endif
