@@ -19,7 +19,7 @@
 # include <sys/stat.h>
 # include <dirent.h>
 # include <stdio.h>
-# include "../../libft/ft_printf/includes/header.h"
+# include "../../ft_printf/includes/header.h"
 
 /*
 **		Global variables

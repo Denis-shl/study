@@ -1,0 +1,8 @@
+/.vscode
+test*.c
+*.o
+*.a
+/a.out
+/ft_printf
+/libftprintf.a
+/*.dSYM
