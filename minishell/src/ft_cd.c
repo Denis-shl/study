@@ -1,49 +1,60 @@
-#include "includes/header.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cd.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/02 13:09:48 by oargrave          #+#    #+#             */
+/*   Updated: 2019/09/02 13:26:04 by oargrave         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../includes/header.h"
 
-void change_env(char *prev_dir)
+void	change_env(char *prev_dir)
 {
-	int index;
-	char *current_dir;
+	int		index;
+	char	*current_dir;
 
 	current_dir = getcwd(NULL, MAX_DIR);
 	index = 0;
-	while (N_ENV[index] != NULL)
+	while (g_env[index] != NULL)
 	{
-		if (ft_strnstr(N_ENV[index], PWD, 5) != NULL)
+		if (ft_strnstr(g_env[index], PWD, 5) != NULL)
 		{
-			free(N_ENV[index]);
-			N_ENV[index] = ft_strnew(MAX_DIR);
-			strcpy(N_ENV[index], PWD);
-			N_ENV[index] = ft_strcat(N_ENV[index], current_dir);
+			free(g_env[index]);
+			g_env[index] = ft_strnew(MAX_DIR);
+			strcpy(g_env[index], PWD);
+			g_env[index] = ft_strcat(g_env[index], current_dir);
 		}
-		if (ft_strnstr(N_ENV[index], OLDPWD, 8) != NULL)
+		if (ft_strnstr(g_env[index], OLDPWD, 8) != NULL)
 		{
-			free(N_ENV[index]);
-			N_ENV[index] = ft_strnew(MAX_DIR);
-			strcpy(N_ENV[index], OLDPWD);
-			N_ENV[index] = ft_strcat(N_ENV[index], prev_dir);
+			free(g_env[index]);
+			g_env[index] = ft_strnew(MAX_DIR);
+			strcpy(g_env[index], OLDPWD);
+			g_env[index] = ft_strcat(g_env[index], prev_dir);
 		}
 		index++;
 	}
 }
 
-char *pr_dir()
+char	*pr_dir(void)
 {
-	char *new_dir;
-	int index;
+	char	*new_dir;
+	int		index;
 
 	index = 0;
-	while (N_ENV[index] != NULL)
+	while (g_env[index] != NULL)
 	{
-		if ((new_dir = ft_strnstr(N_ENV[index], OLDPWD, 8)) != NULL)
-		 return (new_dir + 7);
-		index++; 
+		if ((new_dir = ft_strnstr(g_env[index], OLDPWD, 8)) != NULL)
+			return (new_dir + 7);
+		index++;
 	}
 	return (new_dir);
 }
 
-void ft_cd_way(char **command, char *current_dir, char *str, char *new_dir)
+void	ft_cd_way(char **command, char *current_dir, char *str, char *new_dir)
 {
 	if (ft_check_dir(command[1]) == 1)
 	{
@@ -61,9 +72,7 @@ void ft_cd_way(char **command, char *current_dir, char *str, char *new_dir)
 		chdir(new_dir);
 		change_env(current_dir);
 		new_dir = getcwd(NULL, MAX_DIR);
-		printf ("%s\n", new_dir);
+		printf("%s\n", new_dir);
 		free(new_dir);
 	}
 }
-
-

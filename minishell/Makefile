@@ -1,8 +1,8 @@
-FILE = src/main.c src/pars.c src/inline_func.c src/ft_cd.c src/ft_cd_too.c src/setenv.c src/unsetenv.c
+FILE = src/main.c src/pars.c src/inline_func.c src/ft_cd.c src/ft_cd_too.c src/setenv.c src/unsetenv.c src/launch_shell.c src/exit.c src/echo.c src/matr_print.c
 
 all : 
 	@make -C ../libft/ all
-	gcc -g $(FILE) -I. ../libft/lib/libft.a -o minishell
+	gcc -g $(FILE) -I. ../libft/liblibftprintf.a  -o minishell
  
  clean:
 	rm -rf /a.out

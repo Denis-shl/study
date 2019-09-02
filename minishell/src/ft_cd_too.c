@@ -1,15 +1,27 @@
-#include "includes/header.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_cd_too.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/02 13:12:43 by oargrave          #+#    #+#             */
+/*   Updated: 2019/09/02 13:25:54 by oargrave         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char	*home_dir()
+#include "../includes/header.h"
+
+char	*home_dir(void)
 {
 	int				index;
-	char 			*home;
+	char			*home;
 
 	index = 0;
 	home = NULL;
-	while (N_ENV[index] != NULL)
+	while (g_env[index] != NULL)
 	{
-		if (((home = strstr(N_ENV[index], "HOME=/")) != NULL))
+		if (((home = strstr(g_env[index], "HOME=/")) != NULL))
 		{
 			home = home + 5;
 			return (home);
@@ -19,7 +31,7 @@ char	*home_dir()
 	return (NULL);
 }
 
-void ft_til(char *current_dir, char *new_dir, char *str, char **command)
+void	ft_til(char *current_dir, char *new_dir, char *str, char **command)
 {
 	if (!(new_dir = home_dir()))
 		new_dir = HOME_DIR;
@@ -35,7 +47,7 @@ void ft_til(char *current_dir, char *new_dir, char *str, char **command)
 	return ;
 }
 
-int	ft_check_dir(char *str)
+int		ft_check_dir(char *str)
 {
 	DIR			*dir;
 
@@ -44,7 +56,7 @@ int	ft_check_dir(char *str)
 	dir = opendir(str);
 	if (dir == NULL)
 		return (0);
-	else 
+	else
 		closedir(dir);
 	return (1);
 }
@@ -73,21 +85,20 @@ int		ft_cd_com(char **command, char *new_dir, char *current_dir, char *str)
 	return (1);
 }
 
-void		ft_cd(char **command)
+void	ft_cd(char **command)
 {
-	char *new_dir;
-	char *str;
-	char *current_dir;
-	int flag;
+	char	*new_dir;
+	char	*str;
+	char	*current_dir;
+	int		flag;
 
 	flag = 0;
 	current_dir = getcwd(NULL, MAX_DIR);
 	if (ft_cd_com(command, new_dir, current_dir, str) == 0)
 		return ;
-
 	if (ft_check_dir(command[1]) == 0)
 	{
-		printf ("cd: not a directory: %s\n", command[1]);
+		printf("cd: not a directory: %s\n", command[1]);
 		return ;
 	}
 	ft_cd_way(command, current_dir, str, new_dir);

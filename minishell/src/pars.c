@@ -1,14 +1,20 @@
-#include "includes/header.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pars.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/02 13:23:17 by oargrave          #+#    #+#             */
+/*   Updated: 2019/09/02 16:23:32 by oargrave         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void matr_print(char **str)
-{
-	for (int i = 0; str[i]; i++)
-		printf ("{%d}{%s}\n", i, str[i]);
-}
+#include "../includes/header.h"
 
-void delete_char(char **str)
+void	delete_char(char **str)
 {
-	int index;
+	int		index;
 
 	index = 0;
 	if (!str)
@@ -22,112 +28,51 @@ void delete_char(char **str)
 	str = NULL;
 }
 
-static char *clean_way(char **str, char *name)
+char	*clean_way(char **str, char *name)
 {
-	int index;
-	char *way;
+	int		index;
+	char	*way;
+	char	*tmp;
 
-	index = 0 ;
+	index = 0;
 	way = 0;
-
 	while (str[index] != NULL)
 	{
-		str[index] = ft_strjoin(str[index], "/"); //liks
-		way = ft_strjoin(str[index], name);
+		tmp = ft_strjoin(str[index], "/");
+		way = ft_strjoin(tmp, name);
 		if (access(way, 0) == 0)
 			return (way);
 		index++;
 		free(way);
+		free(tmp);
 	}
 	return (NULL);
 }
 
-static char *finding_ways(char *name)
+void	ft_shell_or_launc(char **str, char **command, int flag)
 {
-	char *way;
-	char *str;
-	char **all_the_way;
-	int iN_ENV;
-	
-	str = NULL;
-	iN_ENV = 0;
-	while(N_ENV[iN_ENV])
+	if ((flag = inline_function(command)) == 1)
+		;
+	else if (flag == -1)
 	{
-		if ((way = strstr(N_ENV[iN_ENV], PATH)) != NULL)
-		{
-			str = ft_strcpy(ft_strnew(ft_strlen(way) - 5), way + 5);
-		}
-		iN_ENV++;
-	}
-	all_the_way = ft_strsplit(str, ':');
-	way = clean_way(all_the_way, name);
-	free(str);
-	delete_char(all_the_way); // refactoring delete **
-	return (way);
-}
-
-/*
-**Новый процесс
-*/
-
-static char *lanunch_cur_dir(char **args)
-{
-	char *way;
-	char *tmp;
-
-	way = NULL;
-	way = getcwd(NULL, MAX_DIR);
-	if(access(args[0], 0) == -1)
-	{
-		printf("Access not found\n");
-		return (NULL);
-	}
-	if(access(args[0], 1) == -1)
-	{
-		printf ("the file is not executable\n");
-		return (NULL);
+		delete_char(command);
+		delete_char(str);
+		exit(0);
 	}
 	else
-	{
-		tmp = way;
-		way = ft_strjoin(way, "/");
-		free(tmp);
-		tmp = ft_strjoin(way, args[0]);
-		free(way);
-		return (tmp);
-	}
-	return(NULL);
+		flag = launch_shell(command);
+	if (flag == 0)
+		ft_printf("command not found:%s\n", command[0]);
 }
 
-int		launch_shell(char **args)
+int		ft_pars(t_buff *buf)
 {
-	pid_t pid, wpid;
-	int status;
-	char *way;
+	char	**str;
+	char	**command;
+	int		i;
+	int		flag;
 
-	if (!(way = finding_ways(args[0])))
-	{
-		if ((way = lanunch_cur_dir(args)) == NULL)
-			return (0);
-	}
-	pid = fork();
-	if (pid == 0)
-		execve(way, args, N_ENV);
-	else 
-	     wpid = wait(&status);
-  return (1);
-}
-
-/*
-**	парсим сначала по ; потом по пробелу
-*/
-int ft_pars(t_buff *buf)
-{
-	char **str;
-	char **command = NULL;
-	int i;
-	int flag;
-
+	command = NULL;
 	i = 0;
 	str = ft_strsplit(buf->str, ';');
 	while (str[i] != NULL)
@@ -139,18 +84,7 @@ int ft_pars(t_buff *buf)
 			continue ;
 		}
 		del_commas(command);
-		if ((flag = inline_function(command)) == 1)
-			;
-		else if (flag == -1)
-		{
-			delete_char(command);
-			delete_char(str);
-			exit (0);
-		}
-		else
-			flag = launch_shell(command);
-		if (flag == 0)
-			printf ("command not found:%s\n", command[0]); 	
+		ft_shell_or_launc(str, command, flag);
 		delete_char(command);
 		command = NULL;
 		i++;
