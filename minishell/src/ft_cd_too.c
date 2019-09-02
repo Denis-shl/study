@@ -7,9 +7,9 @@ char	*home_dir()
 
 	index = 0;
 	home = NULL;
-	while (n_env[index] != NULL)
+	while (N_ENV[index] != NULL)
 	{
-		if (((home = strstr(n_env[index], "HOME=/")) != NULL))
+		if (((home = strstr(N_ENV[index], "HOME=/")) != NULL))
 		{
 			home = home + 5;
 			return (home);

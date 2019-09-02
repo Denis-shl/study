@@ -3,7 +3,7 @@
 void matr_print(char **str)
 {
 	for (int i = 0; str[i]; i++)
-		printf ("{%s}\n", str[i]);
+		printf ("{%d}{%s}\n", i, str[i]);
 }
 
 void delete_char(char **str)
@@ -47,17 +47,17 @@ static char *finding_ways(char *name)
 	char *way;
 	char *str;
 	char **all_the_way;
-	int in_env;
+	int iN_ENV;
 	
 	str = NULL;
-	in_env = 0;
-	while(n_env[in_env])
+	iN_ENV = 0;
+	while(N_ENV[iN_ENV])
 	{
-		if ((way = strstr(n_env[in_env], PATH)) != NULL)
+		if ((way = strstr(N_ENV[iN_ENV], PATH)) != NULL)
 		{
 			str = ft_strcpy(ft_strnew(ft_strlen(way) - 5), way + 5);
 		}
-		in_env++;
+		iN_ENV++;
 	}
 	all_the_way = ft_strsplit(str, ':');
 	way = clean_way(all_the_way, name);
@@ -112,7 +112,7 @@ int		launch_shell(char **args)
 	}
 	pid = fork();
 	if (pid == 0)
-		execve(way, args, n_env);
+		execve(way, args, N_ENV);
 	else 
 	     wpid = wait(&status);
   return (1);

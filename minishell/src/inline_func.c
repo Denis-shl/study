@@ -5,9 +5,9 @@ void ft_env()
 	int index;
 
 	index = 0;
-	while (n_env[index] != NULL)
+	while (N_ENV[index] != NULL)
 	{
-		printf("%s\n", n_env[index]);
+		printf("%s\n", N_ENV[index]);
 		index++;
 	}
 }
@@ -56,11 +56,11 @@ char *ft_search(char *str)
 	char **tmp;
 
 	index = 0;
-	while (n_env[index] != NULL)
+	while (N_ENV[index] != NULL)
 	{
-		if (ft_strncmp(n_env[index], str, ft_strlen(str)) == 0)
+		if (ft_strncmp(N_ENV[index], str, ft_strlen(str)) == 0)
 		{
-			tmp = ft_strsplit(n_env[index], '=');
+			tmp = ft_strsplit(N_ENV[index], '=');
 			command = ft_strdup(tmp[1]);
 			delete_char(tmp);
 			printf ("%s\n", command);
@@ -101,20 +101,20 @@ int inline_function(char **command)
 {
 	int index;
 	
-	index = 0;
-	if(strstr(command[0], ECHO) != NULL)
+	index = 0; 
+	if(ft_strncmp(command[0], ECHO, SIZE_ECHO) == 0)
 		ft_echo(command);
-	else if(strstr(command[0], CD) != NULL)
+	else if(ft_strncmp(command[0], CD, SIZE_CD) == 0)
 		ft_cd(command);
-	else if(strstr(command[0], SETENV) != NULL)
+	else if(ft_strncmp(command[0], SETENV, SIZE_SETENV) == 0)
 		ft_setenv(command);
-	else if(strstr(command[0], UNSETENV) != NULL)
+	else if(ft_strncmp(command[0], UNSETENV, SIZE_UNSETENV) == 0)
 		ft_unsetenv(command);
-	else if(strstr(command[0], ENV) != NULL)
+	else if(ft_strncmp(command[0], ENV, SIZE_ENV_NAME) == 0)
 		ft_env();
 	else if (command[0][0] == DOLL)
 		ft_dollar(command);
-	else if(strstr(command[0], EXIT) != NULL)
+	else if(ft_strncmp(command[0], EXIT, SIZE_EXIT) == 0)
 		return (-1);
 	else return (0);
 

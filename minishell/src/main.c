@@ -49,8 +49,8 @@ void rewrite_env(char **env)
 	i = 0;
 	while (env[size_en])
 		size_en++;
-	count_env = size_en;
-	if (!(n_env = (char **)malloc(sizeof(char *) * (size_en + 1))))
+	SIZE_ENV = size_en;
+	if (!(N_ENV = (char **)malloc(sizeof(char *) * (size_en + 1))))
 		ft_exit(NULL);
 	size_en = 0;
 	while (env[i] != NULL)
@@ -58,15 +58,15 @@ void rewrite_env(char **env)
 		if (ft_strncmp(env[i], SHLVL, ft_strlen(SHLVL)) == 0)
 			ft_shlvl(env[i]);
 		size = ft_strlen(env[size_en]);
-		if (!(n_env[i] = (char *)malloc(sizeof(char) * (size + 1))))
+		if (!(N_ENV[i] = (char *)malloc(sizeof(char) * (size + 1))))
 			ft_exit(NULL);
 		j = 0;
 		while (env[i][j] != '\0')
 		{
-			n_env[i][j] = env[i][j];
+			N_ENV[i][j] = env[i][j];
 			j++;
 		}
-		n_env[i][j] = '\0';
+		N_ENV[i][j] = '\0';
 		i++;
 		size_en++;
 	}

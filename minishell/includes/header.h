@@ -11,8 +11,8 @@
 /*
 **		Global variables
 */
-char			**n_env;
-unsigned int	count_env;
+char			**N_ENV;
+unsigned int	SIZE_ENV;
 /*
 **	const
 */
@@ -26,7 +26,6 @@ unsigned int	count_env;
 #define ENV "env"
 #define EXIT "exit"
 #define HOME_DIR "/Users"
-#define MAX_DIR 100
 #define PREV_DIR "-"
 #define PWD "PWD="
 #define OLDPWD "OLDPWD="
@@ -35,8 +34,32 @@ unsigned int	count_env;
 #define DOLL '$'
 
 /*
+** size const variables example: (unsetenv)| (~)
+**								 (12345678)| (1)
+*/
+
+#define SIZE_TIL 1
+#define SIZE_PATH 5
+#define SIZE_ECHO 4
+#define SIZE_CD 2
+#define SIZE_SETENV 6
+#define SIZE_UNSETENV 8
+#define SIZE_ENV_NAME 3
+#define SIZE_EXIT 4
+#define SIZE_HOME_DIR 6
+#define SIZE_PREV_DIR 1
+#define SIZE_PWD 4
+#define SIZE_OLDPWD 7
+#define SIZE_NOTNEWLINE 2
+#define SIZE_SHLVL 6
+#define SIZE_DOLL 1
+#define MAX_DIR 100
+
+/*
 **	File
 */
+
+
 
 void	ft_exit(t_buff *buf);
 void 	del_commas(char **str);
@@ -51,7 +74,7 @@ void	rewrite_env();
 int		inline_function(char **command);
 void	delete_char(char **str);
 /*
-** cd 
+** cd  and til and env
 */
 void	ft_cd(char **command);
 int		ft_check_dir(char *str);
@@ -63,11 +86,10 @@ void	change_env(char *prev_dir);
 char	*home_dir();
 
 /*
-** setenv
+** setenv and unsetenv 
 */
 
 void	ft_setenv(char **command);
-
 void	ft_unsetenv(char **name);
 
 #endif

@@ -8,21 +8,21 @@ void change_env(char *prev_dir)
 
 	current_dir = getcwd(NULL, MAX_DIR);
 	index = 0;
-	while (n_env[index] != NULL)
+	while (N_ENV[index] != NULL)
 	{
-		if (ft_strnstr(n_env[index], PWD, 5) != NULL)
+		if (ft_strnstr(N_ENV[index], PWD, 5) != NULL)
 		{
-			free(n_env[index]);
-			n_env[index] = ft_strnew(MAX_DIR);
-			strcpy(n_env[index], PWD);
-			n_env[index] = ft_strcat(n_env[index], current_dir);
+			free(N_ENV[index]);
+			N_ENV[index] = ft_strnew(MAX_DIR);
+			strcpy(N_ENV[index], PWD);
+			N_ENV[index] = ft_strcat(N_ENV[index], current_dir);
 		}
-		if (ft_strnstr(n_env[index], OLDPWD, 8) != NULL)
+		if (ft_strnstr(N_ENV[index], OLDPWD, 8) != NULL)
 		{
-			free(n_env[index]);
-			n_env[index] = ft_strnew(MAX_DIR);
-			strcpy(n_env[index], OLDPWD);
-			n_env[index] = ft_strcat(n_env[index], prev_dir);
+			free(N_ENV[index]);
+			N_ENV[index] = ft_strnew(MAX_DIR);
+			strcpy(N_ENV[index], OLDPWD);
+			N_ENV[index] = ft_strcat(N_ENV[index], prev_dir);
 		}
 		index++;
 	}
@@ -34,9 +34,9 @@ char *pr_dir()
 	int index;
 
 	index = 0;
-	while (n_env[index] != NULL)
+	while (N_ENV[index] != NULL)
 	{
-		if ((new_dir = ft_strnstr(n_env[index], OLDPWD, 8)) != NULL)
+		if ((new_dir = ft_strnstr(N_ENV[index], OLDPWD, 8)) != NULL)
 		 return (new_dir + 7);
 		index++; 
 	}

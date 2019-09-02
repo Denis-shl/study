@@ -7,12 +7,12 @@ void ft_env_new_line(char *name, char *argv)
 	char *tmp;
 	
 	index = 0;
-	if (!(new_env = (char **)malloc(sizeof(char *) * (count_env + 2))))
+	if (!(new_env = (char **)malloc(sizeof(char *) * (SIZE_ENV + 2))))
 		return ;
-	while (n_env[index] != NULL)
+	while (N_ENV[index] != NULL)
 	{
-		new_env[index] = ft_strnew(ft_strlen(n_env[index]));
-		ft_strcpy(new_env[index], n_env[index]);
+		new_env[index] = ft_strnew(ft_strlen(N_ENV[index]));
+		ft_strcpy(new_env[index], N_ENV[index]);
 		index++;
 	}
 	new_env[index] = ft_strjoin(name, "=");
@@ -22,10 +22,10 @@ void ft_env_new_line(char *name, char *argv)
 		new_env[index] = ft_strjoin(new_env[index], argv);
 		free(tmp);
 	}
-	count_env = index;
+	SIZE_ENV = index;
 	new_env[index + 1] = NULL;
-	delete_char(n_env);
-	n_env = new_env;
+	delete_char(N_ENV);
+	N_ENV = new_env;
 }
 
 char *ft_read_set(char *arg, char *str, char *name)
@@ -71,7 +71,7 @@ void ft_setenv(char **command)
 	int index;
 	index = 0;
 
-	if (command[3] != NULL )
+	if (command[2] != NULL && command[3] != NULL )
 	{
 		printf ("setenv: Too many arguments.\n");
 		return ;
@@ -81,11 +81,11 @@ void ft_setenv(char **command)
 		printf("setenv: Variable name must begin with a letter.\n");
 		return ;
 	}
-	while (n_env[index] != NULL)
+	while (N_ENV[index] != NULL)
 	{
-		if (ft_strncmp(n_env[index], command[1], ft_strlen(command[1])) == 0)
+		if (ft_strncmp(N_ENV[index], command[1], ft_strlen(command[1])) == 0)
 		{
-			n_env[index] = ft_read_set(command[2], n_env[index], command[1]);
+			N_ENV[index] = ft_read_set(command[2], N_ENV[index], command[1]);
 			return ;
 		}
 		index++;
