@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_shell.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:53:23 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/02 17:56:27 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/03 16:47:51 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ static char		*finding_ways(char *name)
 	ig_env = 0;
 	while (g_env[ig_env])
 	{
-		if ((way = strstr(g_env[ig_env], PATH)) != NULL)
+		if ((way = ft_strnstr(g_env[ig_env], PATH, SIZE_PATH)) != NULL)
 		{
 			str = ft_strcpy(ft_strnew(ft_strlen(way) - 5), way + 5);
+			break ;
 		}
 		ig_env++;
 	}
@@ -74,12 +75,16 @@ int				launch_shell(char **args)
 	if (!(way = finding_ways(args[0])))
 	{
 		if ((way = lanunch_cur_dir(args)) == NULL)
+		{
+			free(way);
 			return (0);
+		}
 	}
 	pid = fork();
 	if (pid == 0)
 		execve(way, args, g_env);
 	else
 		wpid = wait(&status);
+	free(way);
 	return (1);
 }

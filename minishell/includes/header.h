@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:00:17 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/02 17:57:35 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/03 16:59:03 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ unsigned int	g_size_env;
 # define SIZE_NOTNEWLINE 2
 # define SIZE_SHLVL 6
 # define SIZE_DOLL 1
-# define MAX_DIR 100
+# define MAX_DIR 256
 
 /*
 **	File

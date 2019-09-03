@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:16:42 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/02 17:57:40 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/03 17:54:19 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ int		ft_dollar(char **command)
 		new_command[1] = NULL;
 		if ((inline_function(new_command) == 0))
 			launch_shell(new_command);
+		delete_char(new_command);
+		free(str);
 	}
 	else
 		printf("%s: Uwndefined variable.\n", str);
@@ -94,7 +96,7 @@ int		ft_dollar(char **command)
 int		inline_function(char **command)
 {
 	int		index;
-
+	
 	index = 0;
 	if (ft_strncmp(command[0], ECHO, SIZE_ECHO) == 0)
 		ft_echo(command);

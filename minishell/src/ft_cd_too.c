@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:12:43 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/02 13:25:54 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/03 17:49:15 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,19 @@ char	*home_dir(void)
 
 void	ft_til(char *current_dir, char *new_dir, char *str, char **command)
 {
+	char *tmp;
+
 	if (!(new_dir = home_dir()))
 		new_dir = HOME_DIR;
 	str = ft_strcpy(ft_strnew(ft_strlen(command[1])), command[1]);
 	str++;
-	free(command[1]);
-	command[1] = ft_strnew(ft_strlen(new_dir) + ft_strlen(str) + 1);
-	strcpy(command[1], new_dir);
-	command[1] = ft_strcat(command[1], str);
-	chdir(command[1]);
+	tmp = ft_strnew(ft_strlen(new_dir) + ft_strlen(str) + 1);
+	ft_strcpy(tmp, new_dir);
+	tmp = ft_strcat(tmp, str);
+	chdir(tmp);
 	change_env(current_dir);
 	free(--str);
+	free(tmp);
 	return ;
 }
 
@@ -95,10 +97,14 @@ void	ft_cd(char **command)
 	flag = 0;
 	current_dir = getcwd(NULL, MAX_DIR);
 	if (ft_cd_com(command, new_dir, current_dir, str) == 0)
+	{
+		free(current_dir);
 		return ;
+	}
 	if (ft_check_dir(command[1]) == 0)
 	{
 		printf("cd: not a directory: %s\n", command[1]);
+		free(current_dir);
 		return ;
 	}
 	ft_cd_way(command, current_dir, str, new_dir);

@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:23:17 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/02 16:23:32 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/03 18:03:00 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,17 @@ char	*clean_way(char **str, char *name)
 	char	*tmp;
 
 	index = 0;
-	way = 0;
+	way = NULL;
+	tmp = NULL;
 	while (str[index] != NULL)
 	{
 		tmp = ft_strjoin(str[index], "/");
 		way = ft_strjoin(tmp, name);
 		if (access(way, 0) == 0)
+		{
+			free(tmp);
 			return (way);
+		}
 		index++;
 		free(way);
 		free(tmp);
@@ -51,12 +55,15 @@ char	*clean_way(char **str, char *name)
 
 void	ft_shell_or_launc(char **str, char **command, int flag)
 {
+	if (command[0] == NULL)
+		return ;
+		
 	if ((flag = inline_function(command)) == 1)
 		;
 	else if (flag == -1)
 	{
-		delete_char(command);
-		delete_char(str);
+		// delete_char(command);
+		// delete_char(str);
 		exit(0);
 	}
 	else
