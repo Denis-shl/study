@@ -8,6 +8,7 @@ test*.c
 .vscode/
 *DS_Store*
 *swp*
+/*.dSYM
 # Object files
 *.o
 *.ko
