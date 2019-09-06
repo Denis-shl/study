@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:16:42 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/06 11:43:57 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/06 13:55:48 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,11 @@ int		ft_dollar(char **command)
 		new_command[0] = com;
 		new_command[1] = NULL;
 		if ((inline_function(new_command) == 0))
-			launch_shell(new_command);
+			{
+				if (ft_strncmp(new_command[0], HOME_DIR, SIZE_HOME_DIR) != 0
+				|| (ft_strncmp(new_command[0], "/", 1) != 0))
+					launch_shell(new_command);
+			}
 		delete_char(new_command);
 		free(str);
 	}

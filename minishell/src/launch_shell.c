@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:53:23 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/06 11:43:57 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/06 13:58:09 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@ static char		*finding_ways(char *name)
 	char		*way;
 	char		*str;
 	char		**all_the_way;
-	int			ig_env;
+	int			index;
 
 	str = NULL;
-	ig_env = 0;
-	while (g_env[ig_env])
+	index = 0;
+	while (g_env[index])
 	{
-		if ((way = ft_strnstr(g_env[ig_env], PATH, SIZE_PATH)) != NULL)
+		if ((way = ft_strnstr(g_env[index], PATH, SIZE_PATH)) != NULL)
 		{
 			str = ft_strcpy(ft_strnew(ft_strlen(way) - 5), way + 5);
 			break ;
 		}
-		ig_env++;
+		index++;
 	}
 	all_the_way = ft_strsplit(str, ':');
 	way = clean_way(all_the_way, name);
