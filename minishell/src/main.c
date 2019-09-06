@@ -6,27 +6,27 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:28:50 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/02 17:45:39 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/06 11:43:57 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/header.h"
+#include "../includes/minishell.h"
 
-int		ft_matrlen(char **str)
-{
-	int		index;
+// int		ft_matrlen(char **str)
+// {
+// 	int		index;
 
-	index = 0;
-	if (str == NULL)
-		return (0);
-	while (str[index] != NULL)
-		index++;
-	return (index);
-}
+// 	index = 0;
+// 	if (str == NULL)
+// 		return (0);
+// 	while (str[index] != NULL)
+// 		index++;
+// 	return (index);
+// }
 
 void	rewrite_env(char **env)
 {
-	int		size_en;
+	size_t	size_en;
 	int		i;
 	int		j;
 

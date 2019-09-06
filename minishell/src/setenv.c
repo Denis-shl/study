@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   setenv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:45:57 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/02 17:49:25 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/06 11:43:57 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/header.h"
+#include "../includes/minishell.h"
 
 void	ft_env_new_line(char *name, char *argv)
 {

@@ -6,11 +6,11 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:09:48 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/03 16:57:40 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/06 11:43:57 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/header.h"
+#include "../includes/minishell.h"
 
 void	change_env(char *prev_dir)
 {
@@ -25,14 +25,14 @@ void	change_env(char *prev_dir)
 		{
 			free(g_env[index]);
 			g_env[index] = ft_strnew(MAX_DIR);
-			strcpy(g_env[index], PWD);
+			ft_strcpy(g_env[index], PWD);
 			g_env[index] = ft_strcat(g_env[index], current_dir);
 		}
 		if (ft_strnstr(g_env[index], OLDPWD, 8) != NULL)
 		{
 			free(g_env[index]);
 			g_env[index] = ft_strnew(MAX_DIR);
-			strcpy(g_env[index], OLDPWD);
+			ft_strcpy(g_env[index], OLDPWD);
 			g_env[index] = ft_strcat(g_env[index], prev_dir);
 		}
 		index++;

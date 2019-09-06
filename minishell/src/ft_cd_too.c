@@ -6,11 +6,11 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:12:43 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/03 17:49:15 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/06 11:43:57 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/header.h"
+#include "../includes/minishell.h"
 
 char	*home_dir(void)
 {
@@ -21,7 +21,7 @@ char	*home_dir(void)
 	home = NULL;
 	while (g_env[index] != NULL)
 	{
-		if (((home = strstr(g_env[index], "HOME=/")) != NULL))
+		if (((home = ft_strstr(g_env[index], "HOME=/")) != NULL))
 		{
 			home = home + 5;
 			return (home);
@@ -53,7 +53,7 @@ int		ft_check_dir(char *str)
 {
 	DIR			*dir;
 
-	if (strcmp(PREV_DIR, str) == 0)
+	if (ft_strcmp(PREV_DIR, str) == 0)
 		return (2);
 	dir = opendir(str);
 	if (dir == NULL)

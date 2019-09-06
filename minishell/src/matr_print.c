@@ -1,4 +1,4 @@
-#include "../includes/header.h"
+#include "../includes/minishell.h"
 
 void			matr_print(char **str)
 {

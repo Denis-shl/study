@@ -1,25 +1,24 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header.h                                           :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:00:17 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/03 16:59:03 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/06 11:42:49 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_H
-# define HEADER_H
-# include "../../libft/includes/libft.h"
+#ifndef MINISHELL_H
+# define MINISHELL_H
+# include "../ft_printf/includes/header.h"
 # include <sys/types.h>
 # include <unistd.h>
 # include <dirent.h>
 # include <sys/stat.h>
 # include <dirent.h>
 # include <stdio.h>
-# include "../../ft_printf/includes/header.h"
 
 /*
 **		Global variables

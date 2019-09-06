@@ -6,11 +6,11 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:53:23 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/03 16:47:51 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/06 11:43:57 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/header.h"
+#include "../includes/minishell.h"
 
 static char		*finding_ways(char *name)
 {
