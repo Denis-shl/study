@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:45:57 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/06 11:43:57 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/07 17:20:37 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_env_new_line(char *name, char *argv)
 	index = 0;
 	if (!(new_env = (char **)malloc(sizeof(char *) * (g_size_env + 2))))
 		return ;
-	while (g_env[index] != NULL)
+	while (index != g_size_env)
 	{
 		new_env[index] = ft_strnew(ft_strlen(g_env[index]));
 		ft_strcpy(new_env[index], g_env[index]);
@@ -84,6 +84,8 @@ void	ft_setenv(char **command)
 	int index;
 
 	index = 0;
+	if (command[1] == NULL)
+		return ;
 	if (command[2] != NULL && command[3] != NULL)
 	{
 		ft_printf("setenv: Too many arguments.\n");
@@ -91,7 +93,7 @@ void	ft_setenv(char **command)
 	}
 	if (check_name_setenv(command[1]) == -1)
 	{
-		ft_printf("setenv: Variable name must begin with a letter.\n");
+		ft_printf("setenv: wrong name.\n");
 		return ;
 	}
 	while (g_env[index] != NULL)

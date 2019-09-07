@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:49:40 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/06 11:43:57 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/07 17:15:33 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_unsetenv(char **name)
 		index++;
 	}
 	g_size_env = jindex;
-	new_env[++jindex] = NULL;
+	new_env[jindex] = NULL;
 	delete_char(g_env);
 	g_env = new_env;
 }

@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:53:23 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/06 13:58:09 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/07 17:27:27 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static char		*finding_ways(char *name)
 		}
 		index++;
 	}
+	if (str == NULL)
+		return (NULL);
 	all_the_way = ft_strsplit(str, ':');
 	way = clean_way(all_the_way, name);
 	free(str);

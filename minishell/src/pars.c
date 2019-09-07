@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:23:17 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/06 11:43:57 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/07 17:08:16 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,17 @@ void	delete_char(char **str)
 	index = 0;
 	if (!str)
 		return ;
-	while (str[index] != NULL)
+	if (str[0] == NULL)
+	{
+		free(str);
+		return ;
+	}
+	while (str[index])
+		index++;
+	while (index >= 0)
 	{
 		free(str[index]);
-		index++;
+		index--;
 	}
 	free(str);
 	str = NULL;
@@ -62,9 +69,9 @@ void	ft_shell_or_launc(char **str, char **command, int flag)
 		;
 	else if (flag == -1)
 	{
-		// delete_char(command);
-		// delete_char(str);
-		exit(0);
+		delete_char(command);
+		delete_char(str);
+		ft_exit(NULL);
 	}
 	else
 		flag = launch_shell(command);

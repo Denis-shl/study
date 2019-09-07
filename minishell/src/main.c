@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:28:50 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/06 14:13:27 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/07 17:25:52 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	rewrite_env(char **env)
 		i++;
 		size_en++;
 	}
+	g_env[i] = NULL;
 }
 
 void	ft_container(t_buff *buf)
