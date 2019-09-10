@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:53:23 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/07 17:27:27 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/10 10:50:15 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,20 @@ static char		*finding_ways(char *name)
 	return (way);
 }
 
+static char *ft_check(char **str)
+{
+	int index;
+	char *way;
+
+	index = ft_strlen(str[0]);
+	if ((access(str[0], 0) == 0) && (access(str[0], 1) == 0))
+	{
+		way = ft_strdup(str[0]);
+		return (way);
+	}
+	return (NULL);
+}
+
 static char		*lanunch_cur_dir(char **args)
 {
 	char		*way;
@@ -46,13 +60,14 @@ static char		*lanunch_cur_dir(char **args)
 
 	way = NULL;
 	way = getcwd(NULL, MAX_DIR);
-	if (access(args[0], 0) == -1)
+	if ((tmp = ft_check(args)) != NULL)
 	{
-		return (NULL);
+		free(way);
+		return (tmp);			
 	}
-	if (access(args[0], 1) == -1)
+	else if (access(args[0], 1) == -1 || access(args[0], 0) == -1)
 	{
-		ft_printf("the file is not executable\n");
+		free(way);
 		return (NULL);
 	}
 	else
@@ -64,6 +79,7 @@ static char		*lanunch_cur_dir(char **args)
 		free(way);
 		return (tmp);
 	}
+	free(way);
 	return (NULL);
 }
 

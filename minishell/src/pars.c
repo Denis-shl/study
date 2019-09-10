@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:23:17 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/07 17:08:16 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/10 10:51:28 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	ft_shell_or_launc(char **str, char **command, int flag)
 {
 	if (command[0] == NULL)
 		return ;
-		
 	if ((flag = inline_function(command)) == 1)
 		;
 	else if (flag == -1)
@@ -74,9 +73,11 @@ void	ft_shell_or_launc(char **str, char **command, int flag)
 		ft_exit(NULL);
 	}
 	else
+	{
 		flag = launch_shell(command);
+	}
 	if (flag == 0)
-		ft_printf("command not found:%s\n", command[0]);
+		ft_printf("minishell: command not found:%s\n", command[0]);
 }
 
 int		ft_pars(t_buff *buf)

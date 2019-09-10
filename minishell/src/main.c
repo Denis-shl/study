@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:28:50 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/07 17:25:52 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/09 13:32:56 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	loop(int argc, char **argv)
 
 int		main(int argc, char **argv, char **env)
 {
+	printf ("start\n");
 	rewrite_env(env);
 	loop(argc, argv);
 	return (0);

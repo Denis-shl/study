@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:16:42 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/06 13:55:48 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/09 09:46:25 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*ft_search(char *str)
 			tmp = ft_strsplit(g_env[index], '=');
 			command = ft_strdup(tmp[1]);
 			delete_char(tmp);
-			printf("%s\n", command);
+			ft_printf("%s\n", command);
 			return (command);
 		}
 		index++;
@@ -80,7 +80,7 @@ int		ft_dollar(char **command)
 	com = ft_search(str);
 	if (com != NULL)
 	{
-		new_command = (char **)malloc(sizeof(char) * 2);
+		new_command = (char **)malloc(sizeof(char *) * 2);
 		new_command[0] = com;
 		new_command[1] = NULL;
 		if ((inline_function(new_command) == 0))

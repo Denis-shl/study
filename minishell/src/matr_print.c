@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matr_print.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oargrave <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 15:32:01 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/06 15:32:13 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/09 11:31:27 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void			matr_print(char **str)
 {
-	for (int i = 0; str[i]; i++)
-	{
-		ft_printf("{%d}{%s}\n", i, str[i]);
-	}
+	if (str)
+		for (int i = 0; str[i]; i++)
+		{
+			ft_printf("{%d}{%s}\n", i, str[i]);
+		}
 }
