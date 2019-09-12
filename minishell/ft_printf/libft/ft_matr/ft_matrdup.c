@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_matrdup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qypec <qypec@student.42.fr>                +#+  +:+       +#+        */
+/*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 20:30:01 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/03 18:33:22 by qypec            ###   ########.fr       */
+/*   Updated: 2019/09/11 13:20:12 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char					**ft_matrdup(const char *first_str, ...)
 	while (va_arg(arg, char*) != NULL)
 		number_of_elements++;
 	va_end(arg);
-	if ((matr = (char **)malloc(sizeof(char *) * (number_of_elements + 1))) == NULL)
+	if ((matr = (char **)
+		malloc(sizeof(char *) * (number_of_elements + 1))) == NULL)
 		return (NULL);
 	matr[number_of_elements] = NULL;
 	va_start(arg, first_str);

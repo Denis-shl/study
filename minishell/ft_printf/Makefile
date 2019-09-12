@@ -6,7 +6,7 @@
 #    By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/02 12:36:28 by yquaro            #+#    #+#              #
-#    Updated: 2019/09/06 10:18:45 by oargrave         ###   ########.fr        #
+#    Updated: 2019/09/11 13:24:44 by oargrave         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ all:
 	@make -C libft/ all
 	@make -C src/ all
 	@make -C lib/ all
-	gcc -g main.c -I includes/ -L. -lftprintf -o ft_printf
+	# gcc -g main.c -I includes/ -L. lib/libftprintf.a -o ft_printf
 
 clean:
 	@make -C lib/ clean

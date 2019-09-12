@@ -6,68 +6,32 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 15:58:05 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/06 11:43:57 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/11 20:14:45 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../includes/header.h"
 
-static int			take_str_before_persent(char **traverse)
+size_t		ft_printf(const char *format, ...)
 {
-	char			*trav;
+	va_list		arg;
+	size_t		size;
 
-	trav = *traverse;
-	while (*trav != '%' && *trav != '\0')
-	{
-		if (*trav == '{')
-		{
-			take_color(&trav);
-			continue ;
-		}
-		ft_buffaddsymb(g_output, *trav);
-		trav++;
-	}
-	*traverse = trav;
-	if (*trav == '\0')
-		return (END_OF_STRING);
-	return (0);
-}
-
-static void			output(size_t *size)
-{
-	*size = g_output->i;
-	write(1, g_output->str, g_output->i);
-}
-
-static void			totalfree(void)
-{
-	ft_buffdel(&g_output);
-	widthfree();
-	gspecfree();
-}
-
-int					ft_printf(const char *format, ...)
-{
-	va_list			arg;
-	char			*traverse;
-	size_t			size;
-
-	if (!(traverse = (char *)format))
-		return (0);
-	g_output = ft_buffinit(40);
-	g_spec = NULL;
+	size = 0;
 	va_start(arg, (char *)format);
-	while (*traverse != '\0')
-	{
-		init_gspec();
-		init_width();
-		if (take_str_before_persent(&traverse) == END_OF_STRING)
-			break ;
-		struct_spec(&traverse);
-		print_arg(arg);
-	}
-	output(&size);
-	totalfree();
+	size = ft_fprintf(1, format, arg);
+	va_end(arg);
+	return (size);
+}
+
+size_t		ft_vprintf(int fd, const char *format, ...)
+{
+	size_t	size;
+	va_list	arg;
+
+	size = 0;
+	va_start(arg, (char *)format);
+	size = ft_fprintf(fd, format, arg);
 	va_end(arg);
 	return (size);
 }

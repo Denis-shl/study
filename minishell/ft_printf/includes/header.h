@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 15:42:27 by oargrave          #+#    #+#             */
-/*   Updated: 2019/08/02 19:22:32 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/11 19:52:14 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define RESET_COLOR_CODE "\x1b[0m"
 # define COLOR_CODE_SIZE 5
 # define MAX_COLOR_NAME_SIZE 8
+# define ASTERISC '*'
 
 typedef struct		s_width
 {
@@ -91,7 +92,7 @@ unsigned long long	reduction_unsigned(unsigned long long int num);
 void				width(long long number, char *str);
 int					*width_u(unsigned long long number,
 		unsigned long long int index, int width);
-int					ft_printf(const char *format, ...);
+size_t				ft_printf(const char *format, ...);
 int					print_arg(va_list arg);
 void				print_int(va_list arg);
 int					print_d(int number);
@@ -106,7 +107,7 @@ int					isplay_u(unsigned long long int num);
 void				display_int(long long int num, int base);
 void				assembl_int(va_list arg, int base);
 void				struct_specifier(char *traverse);
-void				struct_spec(char **traverse);
+void				struct_spec(char **traverse, va_list arg);
 void				print_char(va_list arg);
 int					is_badsymb(char c);
 int					is_specifier(char c);
@@ -120,12 +121,21 @@ void				read_calculatesymb(char c);
 void				read_digit(char *traverse, const int flag);
 int					read_width_or_precision(char *traverse, int i, int flag);
 int					read_spaces(char *traverse, int i);
-char				*parse_spaces(char *traverse);
-char				*parse_digit(char *traverse, const int flag);
-char				*parse_width_or_precision(char *traverse, int flag);
-char				*parse_calculatesymb(char *traverse);
-char				*parse_lh_bigl(char *traverse);
-char				*parsesymb(char *traverse);
+char				*parse_aster(char *traverse, const int flag, va_list arg);
+size_t				ft_fprintf(int fd, const char *format, va_list arg);
+size_t				ft_vprintf(int fd, const char *format, ...);
+
+/*
+***parse
+*/
+char				*parse_spaces(char *traverse, va_list arg);
+char				*parse_digit(char *traverse, const int flag, va_list arg);
+char				*parse_width_or_precision(char *traverse, int flag,
+	va_list arg);
+char				*parse_calculatesymb(char *traverse, va_list arg);
+char				*parse_lh_bigl(char *traverse, va_list arg);
+char				*parsesymb(char *traverse, va_list arg);
+
 int					read_lh_bigl(char *traverse, int i);
 void				init_bufferoutput(void);
 void				is_it_buffer_overflow(size_t size);

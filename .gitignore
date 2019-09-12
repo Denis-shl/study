@@ -28,7 +28,7 @@ test*.c
 *.lib
 *.la
 *.lo
-
+*.a
 # Shared objects (inc. Windows DLLs)
 *.dll
 *.so

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_it_something.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 15:40:01 by oargrave          #+#    #+#             */
-/*   Updated: 2019/08/02 14:47:02 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/11 10:06:27 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int					is_badsymb(char c)
 {
 	if (c == ' ' || c == '.' || c == '0' || c == '+' || c == '-' || \
 		c == '#' || c == 'h' || c == 'l' || c == 'L' || c == 'z' || \
-		c == 'j' || ft_isdigit(c) == 1)
+		c == 'j' || ft_isdigit(c) == 1 || c == '*')
 		return (0);
 	return (1);
 }

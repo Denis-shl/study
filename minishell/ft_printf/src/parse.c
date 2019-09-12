@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 20:44:35 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/02 14:47:34 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/11 13:17:49 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static void				nullify_llhh_bigl(int flag)
+static void	nullify_llhh_bigl(int flag)
 {
 	g_spec->l = 0;
 	g_spec->h = 0;
@@ -31,7 +31,7 @@ static void				nullify_llhh_bigl(int flag)
 		g_spec->hh = 1;
 }
 
-char					*parse_lh_bigl(char *traverse)
+char		*parse_lh_bigl(char *traverse, va_list arg)
 {
 	if (*traverse == 'L' && g_spec->symb != 'd')
 	{
@@ -57,10 +57,10 @@ char					*parse_lh_bigl(char *traverse)
 		traverse++;
 	else if (g_spec->ll == 1 || g_spec->hh == 1)
 		traverse += 2;
-	return (parsesymb(traverse));
+	return (parsesymb(traverse, arg));
 }
 
-char					*parse_calculatesymb(char *traverse)
+char		*parse_calculatesymb(char *traverse, va_list arg)
 {
 	if (*traverse == '#')
 	{
@@ -82,10 +82,11 @@ char					*parse_calculatesymb(char *traverse)
 		g_spec->minus = 1;
 		traverse++;
 	}
-	return (parsesymb(traverse));
+	return (parsesymb(traverse, arg));
 }
 
-char					*parse_digit(char *traverse, const int flag)
+char		*parse_digit(char *traverse, const int flag,
+	va_list arg)
 {
 	int		num;
 	int		i;
@@ -95,7 +96,7 @@ char					*parse_digit(char *traverse, const int flag)
 	i = 0;
 	j = 0;
 	if (ft_isdigit(*traverse) != 1)
-		return (traverse);
+		return (parse_aster(traverse, flag, arg));
 	while (ft_isdigit(traverse[j]) == 1)
 	{
 		i++;
@@ -112,14 +113,15 @@ char					*parse_digit(char *traverse, const int flag)
 	return (traverse + i);
 }
 
-char					*parse_width_or_precision(char *traverse, int flag)
+char		*parse_width_or_precision(char *traverse, int flag,
+	va_list arg)
 {
 	if (flag == PRECISION)
 	{
 		g_spec->precision = 0;
-		traverse = parse_digit(++traverse, flag);
+		traverse = parse_digit(++traverse, flag, arg);
 	}
 	else if (flag == WIDTH)
-		traverse = parse_digit(traverse, flag);
-	return (parsesymb(traverse));
+		traverse = parse_digit(traverse, flag, arg);
+	return (parsesymb(traverse, arg));
 }
