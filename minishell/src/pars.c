@@ -64,6 +64,16 @@ void	ft_shell_or_launc(char **str, char **command, int flag)
 {
 	if (command[0] == NULL)
 		return ;
+	if (command[0][0] == '.' && command[0][1] == '\0')
+	{
+		ft_printf ("%s: not enough arguments\n",command[0]);
+		return ;
+	}
+	else if (command[0][0] == '.' && command[0][1] == '.')
+	{
+		ft_printf ("%s: command not found\n",command[0]);
+		return ;
+	}
 	if ((flag = inline_function(command)) == 1)
 		;
 	else if (flag == -1)
@@ -73,9 +83,7 @@ void	ft_shell_or_launc(char **str, char **command, int flag)
 		ft_exit(NULL);
 	}
 	else
-	{
 		flag = launch_shell(command);
-	}
 	if (flag == 0)
 		ft_printf("minishell: command not found:%s\n", command[0]);
 }

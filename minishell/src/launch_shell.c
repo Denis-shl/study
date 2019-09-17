@@ -44,10 +44,12 @@ static char *ft_check(char **str)
 	int index;
 	char *way;
 
+	printf ("ft_check\n"); 	
 	index = ft_strlen(str[0]);
 	if ((access(str[0], 0) == 0) && (access(str[0], 1) == 0))
 	{
 		way = ft_strdup(str[0]);
+		printf ("ft_check way = {%s}", way);
 		return (way);
 	}
 	return (NULL);

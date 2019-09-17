@@ -6,13 +6,13 @@ NAME = minishell
 all : $(NAME)
 
 $(NAME):
-	@make -C  ft_printf/libft/ all
-	gcc -g  $(FILE) -I. ft_printf/lib/libftprintf.a -o $(NAME)  
+	make -C  ft_printf/libft/ all
+	gcc -g  $(FILE) -I /includes/  ft_printf/lib/libftprintf.a -o $(NAME)  
  
  clean:
-	@make -C ft_printf/libft/ clean
+	make -C ft_printf/libft/ clean
 	rm -rf $(OBJ)
  fclean: clean
-	@make -C ft_printf/libft/ fclean
+	make -C ft_printf/libft/ fclean
 	rm -rf $(NAME)
  re: fclean all

@@ -34,7 +34,7 @@ void	ft_env_new_line(char *name, char *argv)
 		new_env[index] = ft_strjoin(new_env[index], argv);
 		free(tmp);
 	}
-	g_size_env = index;
+	g_size_env = index + 1; //fix bag oargrave
 	new_env[index + 1] = NULL;
 	delete_char(g_env);
 	g_env = new_env;
