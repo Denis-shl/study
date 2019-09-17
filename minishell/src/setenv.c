@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:45:57 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/12 15:37:45 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/17 12:27:30 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_env_new_line(char *name, char *argv)
 		new_env[index] = ft_strjoin(new_env[index], argv);
 		free(tmp);
 	}
-	g_size_env = index + 1; //fix bag oargrave
+	g_size_env = index + 1;
 	new_env[index + 1] = NULL;
 	delete_char(g_env);
 	g_env = new_env;

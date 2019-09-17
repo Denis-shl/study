@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:16:42 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/09 09:46:25 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/17 11:55:43 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_env(void)
 	index = 0;
 	while (g_env[index] != NULL)
 	{
-		printf("%s\n", g_env[index]);
+		ft_printf("%s\n", g_env[index]);
 		index++;
 	}
 }
@@ -71,12 +71,9 @@ int		ft_dollar(char **command)
 	char	*str;
 	char	*com;
 	char	**new_command;
-	char	*line;
 
-	com = NULL;
-	line = command[0];
 	index = 0;
-	str = ft_strdup(line + 1);
+	str = ft_strdup(command[0] + 1);
 	com = ft_search(str);
 	if (com != NULL)
 	{
@@ -84,23 +81,23 @@ int		ft_dollar(char **command)
 		new_command[0] = com;
 		new_command[1] = NULL;
 		if ((inline_function(new_command) == 0))
-			{
-				if (ft_strncmp(new_command[0], HOME_DIR, SIZE_HOME_DIR) != 0
+		{
+			if (ft_strncmp(new_command[0], HOME_DIR, SIZE_HOME_DIR) != 0
 				|| (ft_strncmp(new_command[0], "/", 1) != 0))
-					launch_shell(new_command);
-			}
+				launch_shell(new_command);
+		}
 		delete_char(new_command);
 		free(str);
 	}
 	else
-		printf("%s: Uwndefined variable.\n", str);
+		ft_printf("%s: Uwndefined variable.\n", str);
 	return (0);
 }
 
 int		inline_function(char **command)
 {
 	int		index;
-	
+
 	index = 0;
 	if (ft_strncmp(command[0], ECHO, SIZE_ECHO) == 0)
 		ft_echo(command);

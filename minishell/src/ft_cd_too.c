@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 13:12:43 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/09 12:51:56 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/17 10:50:52 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	ft_cd(char **command)
 	}
 	if (ft_check_dir(command[1]) == 0)
 	{
-		printf("cd: not a directory: %s\n", command[1]);
+		ft_printf("cd: not a directory: %s\n", command[1]);
 		free(current_dir);
 		return ;
 	}

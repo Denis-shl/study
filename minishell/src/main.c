@@ -6,7 +6,7 @@
 /*   By: oargrave <oargrave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 17:28:50 by oargrave          #+#    #+#             */
-/*   Updated: 2019/09/09 13:32:56 by oargrave         ###   ########.fr       */
+/*   Updated: 2019/09/17 12:38:18 by oargrave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	rewrite_env(char **env)
 	{
 		if (ft_strncmp(env[i], SHLVL, ft_strlen(SHLVL)) == 0)
 			ft_shlvl(env[i]);
-		if (!(g_env[i] = ft_strnew((ft_strlen(env[size_en]) + 1))))
+		if (!(g_env[i] = ft_strnew((ft_strlen(env[size_en++]) + 1))))
 			ft_exit(NULL);
 		j = 0;
 		while (env[i][j] != '\0')
@@ -37,7 +37,6 @@ void	rewrite_env(char **env)
 		}
 		g_env[i][j] = '\0';
 		i++;
-		size_en++;
 	}
 	g_env[i] = NULL;
 }
@@ -76,7 +75,6 @@ void	loop(int argc, char **argv)
 
 int		main(int argc, char **argv, char **env)
 {
-	printf ("start\n");
 	rewrite_env(env);
 	loop(argc, argv);
 	return (0);
